@@ -2,3 +2,15 @@
   box-sizing: border-box;
   font-family: 'Open Sans', Arial, sans-serif;
 }
+
+body {
+  margin: 0;
+}
+
+.header {
+  font-weight: 600;
+}
+
+.nav-img {
+  max-height: 3rem;
+}
