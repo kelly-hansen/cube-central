@@ -10,7 +10,7 @@ body {
 
 .header {
   font-weight: 600;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .nav-img {
@@ -24,6 +24,7 @@ body {
 .timer {
   border-radius: 0.25rem;
   color: white;
+  height: 100%;
   min-height: 12rem;
   display: flex;
   flex-direction: column;
@@ -56,4 +57,28 @@ body {
 
 .start-stop {
   font-size: 1.25rem;
+}
+
+.yellow-container {
+  overflow: hidden;
+  padding-top: 3rem;
+  margin: auto 0 0 0;
+}
+
+.round-top {
+  padding-top: 2.5rem;
+  position: relative;
+  min-height: 12.5rem;
+  width: 150%;
+  left: -25%;
+  border-radius: 50% 50% 0 0 / 100px;
+  text-align: center;
+  background-color: #ffff64;
+  overflow: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
