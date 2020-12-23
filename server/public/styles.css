@@ -16,3 +16,7 @@ body {
 .nav-img {
   max-height: 3rem;
 }
+
+.std-button {
+  height: 3rem;
+}

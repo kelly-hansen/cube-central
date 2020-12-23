@@ -12,10 +12,10 @@ export default class TimerPage extends React.Component {
         <Header></Header>
         <Container>
           <Row>
-            <Col>
+            <Col lg>
             </Col>
-            <Col>
-              <Button block>Virtual Cube</Button>
+            <Col lg>
+              <Button className="std-button" block>Virtual Cube</Button>
             </Col>
           </Row>
         </Container>
