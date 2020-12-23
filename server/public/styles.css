@@ -18,7 +18,7 @@ body {
 }
 
 .timer {
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   color: white;
   min-height: 12rem;
   display: flex;
@@ -28,12 +28,11 @@ body {
 }
 
 .timer-stopped {
-  background-color: #4BED4B;
+  background-color: #4bed4b;
 }
 
 .timer-stopped:hover {
   cursor: pointer;
-  background-color: #67f067;
 }
 
 .timer-running {
@@ -42,7 +41,6 @@ body {
 
 .timer-running:hover {
   cursor: pointer;
-  background-color: #bdbdbd;
 }
 
 .counter {
