@@ -6,10 +6,12 @@ export default class Timer extends React.Component {
   }
 
   render() {
-    return (
+    const fullTimer = (
       <div className="timer timer-stopped">
-        timer
+        <p className="counter">0:00.00</p>
+        <p>Start</p>
       </div>
     );
+    return fullTimer;
   }
 }

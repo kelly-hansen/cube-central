@@ -22,6 +22,7 @@ body {
   color: white;
   min-height: 12rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -30,8 +31,25 @@ body {
   background-color: #4BED4B;
 }
 
-.timer-running {
+.timer-stopped:hover {
+  cursor: pointer;
+  background-color: #67f067;
+}
 
+.timer-running {
+  background-color: #b4b4b4;
+}
+
+.timer-running:hover {
+  cursor: pointer;
+  background-color: #bdbdbd;
+}
+
+.counter {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 0;
 }
 
 .std-button {
