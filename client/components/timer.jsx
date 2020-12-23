@@ -26,6 +26,17 @@ export default class Timer extends React.Component {
     });
   }
 
+  componentDidUpdate() {
+    setTimeout(() => {
+      if (this.state.running) {
+        this.setState({
+          running: true,
+          elapsed: this.state.elapsed + 10
+        });
+      }
+    }, 10);
+  }
+
   render() {
     let timerClass;
     if (this.state.running) {
@@ -35,7 +46,7 @@ export default class Timer extends React.Component {
     }
     const fullTimer = (
       <div className={timerClass} onClick={this.state.running ? this.stopTimer : this.startTimer}>
-        <p className="counter">0:00.00</p>
+        <p className="counter">{this.state.elapsed}</p>
         <p>Start</p>
       </div>
     );
