@@ -38,6 +38,26 @@ export default class Timer extends React.Component {
   }
 
   render() {
+    let time = this.state.elapsed;
+    const min = Math.floor(time / 60000);
+    time = time - (min * 60000);
+    const sec = Math.floor(time / 1000).toString(10);
+    time = time - (sec * 1000);
+    const hundreths = Math.floor(time / 10).toString(10);
+    let displayedSec;
+    if (sec.length === 1) {
+      displayedSec = '0' + sec;
+    } else {
+      displayedSec = sec;
+    }
+    let displayedHundreths;
+    if (hundreths.length === 1) {
+      displayedHundreths = '0' + hundreths;
+    } else {
+      displayedHundreths = hundreths;
+    }
+    const displayedTime = `${min}:${displayedSec}.${displayedHundreths}`;
+
     let timerClass;
     if (this.state.running) {
       timerClass = 'timer timer-running';
@@ -46,10 +66,11 @@ export default class Timer extends React.Component {
     }
     const fullTimer = (
       <div className={timerClass} onClick={this.state.running ? this.stopTimer : this.startTimer}>
-        <p className="counter">{this.state.elapsed}</p>
+        <p className="counter">{displayedTime}</p>
         <p className="start-stop">{this.state.running ? 'STOP' : 'START'}</p>
       </div>
     );
+
     return fullTimer;
   }
 }
