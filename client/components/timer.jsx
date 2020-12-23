@@ -63,14 +63,11 @@ export default class Timer extends React.Component {
   render() {
     const displayedTime = this.getDisplayTime();
 
-    let timerClass;
-    if (this.state.running) {
-      timerClass = 'timer timer-running';
-    } else {
-      timerClass = 'timer timer-stopped';
-    }
     const fullTimer = (
-      <div className={timerClass} onClick={this.state.running ? this.stopTimer : this.startTimer}>
+      <div
+      className={this.state.running ? 'timer timer-running' : 'timer timer-stopped'}
+      onClick={this.state.running ? this.stopTimer : this.startTimer}
+      >
         <p className="counter">{displayedTime}</p>
         <p className="start-stop">{this.state.running ? 'STOP' : 'START'}</p>
       </div>
