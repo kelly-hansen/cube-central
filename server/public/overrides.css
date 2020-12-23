@@ -1,0 +1,8 @@
+.navbar-light .navbar-brand {
+  color: #4b4b4b;
+}
+
+.navbar-light .navbar-brand:hover,
+.navbar-light .navbar-brand:focus {
+  color: #4b4b4b;
+}
