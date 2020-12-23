@@ -16,25 +16,24 @@ export default class Timer extends React.Component {
       running: true,
       elapsed: 0
     });
+    let elapsed = 0;
+    const intervalId = setInterval(() => {
+      elapsed = elapsed + 10;
+      this.setState({
+        intervalId,
+        running: true,
+        elapsed
+      });
+    }, 10);
   }
 
   stopTimer() {
+    clearInterval(this.state.intervalId);
     const elapsed = this.state.elapsed;
     this.setState({
       running: false,
       elapsed
     });
-  }
-
-  componentDidUpdate() {
-    setTimeout(() => {
-      if (this.state.running) {
-        this.setState({
-          running: true,
-          elapsed: this.state.elapsed + 10
-        });
-      }
-    }, 10);
   }
 
   render() {
