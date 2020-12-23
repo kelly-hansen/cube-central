@@ -17,6 +17,23 @@ body {
   max-height: 3rem;
 }
 
+.timer {
+  border-radius: .25rem;
+  color: white;
+  min-height: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-stopped {
+  background-color: #4BED4B;
+}
+
+.timer-running {
+
+}
+
 .std-button {
   height: 3rem;
 }
