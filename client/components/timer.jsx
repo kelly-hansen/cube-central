@@ -36,7 +36,7 @@ export default class Timer extends React.Component {
     });
   }
 
-  render() {
+  getDisplayTime() {
     let time = this.state.elapsed;
     const min = Math.floor(time / 60000);
     time = time - (min * 60000);
@@ -56,6 +56,12 @@ export default class Timer extends React.Component {
       displayedHundreths = hundreths;
     }
     const displayedTime = `${min}:${displayedSec}.${displayedHundreths}`;
+
+    return displayedTime;
+  }
+
+  render() {
+    const displayedTime = this.getDisplayTime();
 
     let timerClass;
     if (this.state.running) {
