@@ -1,0 +1,24 @@
+.navbar-light .navbar-brand {
+  color: #4b4b4b;
+}
+
+.navbar-light .navbar-brand:hover,
+.navbar-light .navbar-brand:focus {
+  color: #4b4b4b;
+}
+
+.btn-primary {
+  background-color: #3232ff;
+  border-color: #3232ff;
+}
+
+.btn-primary:hover {
+  background-color: #4d4dff;
+  border-color: #4d4dff;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  background-color: #4d4dff;
+  border-color: #4d4dff;
+}
