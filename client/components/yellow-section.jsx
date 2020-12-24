@@ -1,4 +1,5 @@
 import React from 'react';
+import SessionTimes from './session-times';
 
 export default class YellowSection extends React.Component {
   render() {
@@ -19,21 +20,7 @@ export default class YellowSection extends React.Component {
               </div>
               <div></div>
             </div>
-            <div className="session-times">
-              <p>Times</p>
-              <div className="times-list">
-                <div>
-                  <p>1.</p>
-                  <p>1:25.02</p>
-                  <p>X</p>
-                </div>
-                <div>
-                  <p>2.</p>
-                  <p>1:04.43</p>
-                  <p>X</p>
-                </div>
-              </div>
-            </div>
+            <SessionTimes sessionTimes={this.props.sessionTimes} />
           </div>
         </>
       );

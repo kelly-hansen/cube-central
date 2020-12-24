@@ -27,18 +27,18 @@ export default class TimerPage extends React.Component {
   render() {
     return (
       <>
-        <Header></Header>
+        <Header />
         <Container>
           <Row>
             <Col lg className="mb-3">
               <Button className="std-button" block>Virtual Cube</Button>
             </Col>
             <Col lg>
-              <Timer addNewTime={this.addNewTime}></Timer>
+              <Timer addNewTime={this.addNewTime} />
             </Col>
           </Row>
         </Container>
-        <YellowSection contents="session"></YellowSection>
+        <YellowSection contents="session" sessionTimes={this.state.sessionTimes} />
       </>
     );
   }
