@@ -110,12 +110,18 @@ body {
   margin-top: 2rem;
 }
 
+.time-delete {
+  color: #ff4646;
+  display: flex;
+  align-items: center;
+}
+
 .times-list > div {
   display: flex;
   justify-content: center;
 }
 
-.times-list > div > p {
+.times-list > div > * {
   margin: 0 1rem 0 1rem;
 }
 
@@ -124,7 +130,7 @@ body {
   text-align: right;
 }
 
-.times-list > div > p:nth-child(3) {
+.times-list > div > i:nth-child(3) {
   width: 2.5rem;
   text-align: left;
 }

@@ -10,7 +10,7 @@ export default class SessionTimes extends React.Component {
         <div key={`time${i + 1}`}>
           <p>{`${i + 1}.`}</p>
           <p>{displayTime}</p>
-          <p>X</p>
+          <i className="fas fa-times-circle time-delete"></i>
         </div>
       );
       timesList.push(newTime);
