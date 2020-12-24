@@ -8,6 +8,13 @@ import Button from 'react-bootstrap/Button';
 import YellowSection from '../components/yellow-section';
 
 export default class TimerPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sessionTimes: []
+    };
+  }
+
   render() {
     return (
       <>
