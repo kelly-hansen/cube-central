@@ -8,14 +8,31 @@ export default class YellowSection extends React.Component {
         <>
           <p>Session</p>
           <div className="session-data">
-            <div>
-
+            <div className="session-stats">
+              <div>
+                <p>Best:</p>
+                <p>1:04.43</p>
+              </div>
+              <div>
+                <p>Worst:</p>
+                <p>1:58.97</p>
+              </div>
+              <div></div>
             </div>
-            <div>
-              <ol>
-                <li>1:25.02</li>
-                <li>1:04.43</li>
-              </ol>
+            <div className="session-times">
+              <p>Times</p>
+              <div className="times-list">
+                <div>
+                  <p>1.</p>
+                  <p>1:25.02</p>
+                  <p>X</p>
+                </div>
+                <div>
+                  <p>2.</p>
+                  <p>1:04.43</p>
+                  <p>X</p>
+                </div>
+              </div>
             </div>
           </div>
         </>

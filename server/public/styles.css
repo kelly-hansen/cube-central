@@ -81,12 +81,52 @@ body {
 
 .yellow-contents {
   width: calc(100% / 3 * 2);
+  margin-bottom: 2.5rem;
 }
 
 .session-data {
   width: 100vw;
   display: flex;
   flex-direction: column;
+}
+
+.session-data > div {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.session-stats > div {
+  display: flex;
+  justify-content: center;
+}
+
+.session-stats > div > p {
+  width: 8rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.session-times {
+  margin-top: 2rem;
+}
+
+.times-list > div {
+  display: flex;
+  justify-content: center;
+}
+
+.times-list > div > p {
+  margin: 0 1rem 0 1rem;
+}
+
+.session-stats > div > p:nth-child(1) {
+  text-align: right;
+  margin-right: 0.25rem;
+}
+
+.session-stats > div > p:nth-child(2) {
+  text-align: left;
+  margin-left: 0.25rem;
 }
 
 #root {
@@ -98,5 +138,15 @@ body {
 @media (min-width: 768px) {
   .session-data {
     flex-direction: row;
+    justify-content: center;
+  }
+
+  .session-stats {
+    width: 20rem;
+  }
+
+  .session-times {
+    margin-top: 0;
+    width: 20rem;
   }
 }
