@@ -30,6 +30,7 @@ export default class Timer extends React.Component {
   stopTimer() {
     clearInterval(this.state.intervalId);
     const elapsed = this.state.elapsed;
+    this.props.addNewTime(elapsed);
     this.setState({
       running: false,
       elapsed

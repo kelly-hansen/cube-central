@@ -34,7 +34,7 @@ export default class TimerPage extends React.Component {
               <Button className="std-button" block>Virtual Cube</Button>
             </Col>
             <Col lg>
-              <Timer></Timer>
+              <Timer addNewTime={this.addNewTime}></Timer>
             </Col>
           </Row>
         </Container>
