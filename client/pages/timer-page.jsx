@@ -13,6 +13,15 @@ export default class TimerPage extends React.Component {
     this.state = {
       sessionTimes: []
     };
+    this.addNewTime = this.addNewTime.bind(this);
+  }
+
+  addNewTime(time) {
+    const sessionTimes = this.state.sessionTimes.slice();
+    sessionTimes.push(time);
+    this.setState({
+      sessionTimes
+    });
   }
 
   render() {
