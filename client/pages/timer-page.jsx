@@ -22,14 +22,7 @@ export default class TimerPage extends React.Component {
             </Col>
           </Row>
         </Container>
-        <YellowSection title="Session">
-          <Container>
-            <Row>
-              <Col></Col>
-              <Col></Col>
-            </Row>
-          </Container>
-        </YellowSection>
+        <YellowSection contents="session"></YellowSection>
       </>
     );
   }

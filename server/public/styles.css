@@ -65,7 +65,7 @@ body {
   margin: auto 0 0 0;
 }
 
-.round-top {
+.yellow-round-top {
   padding-top: 2.5rem;
   position: relative;
   min-height: 12.5rem;
@@ -75,10 +75,28 @@ body {
   text-align: center;
   background-color: #ffff64;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.yellow-contents {
+  width: calc(100% / 3 * 2);
+}
+
+.session-data {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
 }
 
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .session-data {
+    flex-direction: row;
+  }
 }
