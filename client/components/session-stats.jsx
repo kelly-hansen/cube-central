@@ -16,9 +16,8 @@ export default class SessionStats extends React.Component {
   }
 
   getAverage(times) {
-    const timesCopy = times.slice();
     let avg;
-    times.length > 0 ? avg = getDisplayTime(timesCopy.reduce((acc, cur) => acc + cur) / times.length) : avg = 'N/A';
+    times.length > 0 ? avg = getDisplayTime(times.reduce((acc, cur) => acc + cur) / times.length) : avg = 'N/A';
     return avg;
   }
 
@@ -39,6 +38,18 @@ export default class SessionStats extends React.Component {
     return median;
   }
 
+  getStdDeviation(times) {
+    if (times.length > 0) {
+      const avg = times.reduce((acc, cur) => acc + cur) / times.length;
+      const varianceArr = times.map(time => Math.pow((time - avg), 2));
+      const variance = varianceArr.reduce((acc, cur) => acc + cur) / varianceArr.length;
+      const stdDeviation = Math.sqrt(variance);
+      return getDisplayTime(stdDeviation);
+    } else {
+      return 'N/A';
+    }
+  }
+
   render() {
     const times = this.props.sessionTimes.slice();
     const statsArray = [
@@ -57,6 +68,10 @@ export default class SessionStats extends React.Component {
       {
         name: 'Median',
         result: this.getMedian(times)
+      },
+      {
+        name: 'Std Deviation',
+        result: this.getStdDeviation(times)
       }
     ];
     console.log(statsArray);
