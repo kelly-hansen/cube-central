@@ -15,8 +15,15 @@ export default class SessionStats extends React.Component {
     return worst;
   }
 
+  getAverage(times) {
+    const timesCopy = times.slice();
+    let avg;
+    times.length > 0 ? avg = getDisplayTime(timesCopy.reduce((acc, cur) => acc + cur) / times.length) : avg = 'N/A';
+    return avg;
+  }
+
   render() {
-    const times = this.props.sessionTimes;
+    const times = this.props.sessionTimes.slice();
     const statsArray = [
       {
         name: 'Best',
@@ -25,6 +32,10 @@ export default class SessionStats extends React.Component {
       {
         name: 'Worst',
         result: this.getWorst(times)
+      },
+      {
+        name: 'Average',
+        result: this.getAverage(times)
       }
     ];
     console.log(statsArray);
