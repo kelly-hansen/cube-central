@@ -27,20 +27,16 @@ body {
   min-height: 12rem;
 }
 
+.timer:hover {
+  cursor: pointer;
+}
+
 .timer-stopped {
   background-color: #4bed4b;
 }
 
-.timer-stopped:hover {
-  cursor: pointer;
-}
-
 .timer-running {
   background-color: #b4b4b4;
-}
-
-.timer-running:hover {
-  cursor: pointer;
 }
 
 .counter {
