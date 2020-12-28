@@ -3,17 +3,28 @@ import getDisplayTime from '../lib/get-display-time';
 
 export default class SessionStats extends React.Component {
 
-  getBest() {
+  getBest(times) {
     let best;
-    this.props.sessionTimes.length > 0 ? best = getDisplayTime(Math.min(...this.props.sessionTimes)) : best = 'N/A';
+    times.length > 0 ? best = getDisplayTime(Math.min(...times)) : best = 'N/A';
     return best;
   }
 
+  getWorst(times) {
+    let worst;
+    times.length > 0 ? worst = getDisplayTime(Math.max(...times)) : worst = 'N/A';
+    return worst;
+  }
+
   render() {
+    const times = this.props.sessionTimes;
     const statsArray = [
       {
         name: 'Best',
-        result: this.getBest()
+        result: this.getBest(times)
+      },
+      {
+        name: 'Worst',
+        result: this.getWorst(times)
       }
     ];
     console.log(statsArray);
