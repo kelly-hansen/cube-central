@@ -1,7 +1,12 @@
 import React from 'react';
+import getDisplayTime from '../lib/get-display-time';
 
 export default class SessionStats extends React.Component {
   render() {
+    const statsArray = [
+
+    ];
+
     return (
       <div className="session-stats">
         <div className="d-flex justify-content-center mx-3">
