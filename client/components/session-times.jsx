@@ -3,8 +3,7 @@ import getDisplayTime from '../lib/get-display-time';
 
 export default class SessionTimes extends React.Component {
   render() {
-    const timesList = [];
-    for (let i = 0; i < this.props.sessionTimes.length; i++) {
+    const timesList = this.props.sessionTimes.map((time, i) => {
       const displayTime = getDisplayTime(this.props.sessionTimes[i]);
       const newTime = (
         <div key={`time${i + 1}`}>
@@ -13,8 +12,8 @@ export default class SessionTimes extends React.Component {
           <i className="fas fa-times-circle time-delete"></i>
         </div>
       );
-      timesList.push(newTime);
-    }
+      return newTime;
+    });
 
     return (
       <div className="session-times">
