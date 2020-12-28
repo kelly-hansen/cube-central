@@ -8,13 +8,13 @@ export default class YellowSection extends React.Component {
       contents = (
         <>
           <p>Session</p>
-          <div className="session-data">
+          <div className="session-data d-flex">
             <div className="session-stats">
-              <div>
+              <div className="d-flex justify-content-center">
                 <p>Best:</p>
                 <p>1:04.43</p>
               </div>
-              <div>
+              <div className="d-flex justify-content-center">
                 <p>Worst:</p>
                 <p>1:58.97</p>
               </div>

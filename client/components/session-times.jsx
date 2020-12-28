@@ -6,10 +6,10 @@ export default class SessionTimes extends React.Component {
     const timesList = this.props.sessionTimes.map((time, i) => {
       const displayTime = getDisplayTime(this.props.sessionTimes[i]);
       const newTime = (
-        <div key={`time${i + 1}`}>
+        <div key={`time${i + 1}`} className="d-flex justify-content-center">
           <p>{`${i + 1}.`}</p>
           <p>{displayTime}</p>
-          <i className="fas fa-times-circle time-delete"></i>
+          <i className="fas fa-times-circle time-delete d-flex align-items-center"></i>
         </div>
       );
       return newTime;
