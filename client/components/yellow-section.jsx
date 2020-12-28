@@ -10,13 +10,13 @@ export default class YellowSection extends React.Component {
           <p>Session</p>
           <div className="session-data d-flex">
             <div className="session-stats">
-              <div className="d-flex justify-content-center">
-                <p>Best:</p>
-                <p>1:04.43</p>
+              <div className="d-flex justify-content-center mx-3">
+                <p className="stat-col my-0 mr-1 text-right">Best:</p>
+                <p className="stat-col my-0 ml-1 text-left">1:04.43</p>
               </div>
-              <div className="d-flex justify-content-center">
-                <p>Worst:</p>
-                <p>1:58.97</p>
+              <div className="d-flex justify-content-center mx-3">
+                <p className="stat-col my-0 mr-1 text-right">Worst:</p>
+                <p className="stat-col my-0 ml-1 text-left">1:58.97</p>
               </div>
               <div></div>
             </div>
@@ -27,9 +27,9 @@ export default class YellowSection extends React.Component {
     }
 
     const fullYellowSection = (
-      <div className="yellow-container">
-        <div className="yellow-round-top">
-          <div className="yellow-contents">
+      <div className="pt-5 mt-auto mb-0 mx-0 overflow-hidden">
+        <div className="yellow-round-top position-relative pt-5 d-flex justify-content-center overflow-hidden text-center">
+          <div className="yellow-contents mb-5">
             {contents}
           </div>
         </div>

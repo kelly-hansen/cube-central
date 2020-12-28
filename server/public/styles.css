@@ -10,7 +10,6 @@ body {
 
 .header {
   font-weight: 600;
-  margin-bottom: 3rem;
 }
 
 .nav-img {
@@ -52,36 +51,22 @@ body {
   font-family: 'Roboto Mono', monospace;
   font-size: 3rem;
   font-weight: 400;
-  margin-bottom: 0;
 }
 
 .start-stop {
   font-size: 1.25rem;
 }
 
-.yellow-container {
-  overflow: hidden;
-  padding-top: 3rem;
-  margin: auto 0 0 0;
-}
-
 .yellow-round-top {
-  padding-top: 2.5rem;
-  position: relative;
   min-height: 12.5rem;
   width: 150%;
   left: -25%;
   border-radius: 50% 50% 0 0 / 100px;
-  text-align: center;
   background-color: #ffff64;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
 }
 
 .yellow-contents {
   width: calc(100% / 3 * 2);
-  margin-bottom: 2.5rem;
 }
 
 .session-data {
@@ -89,47 +74,25 @@ body {
   flex-direction: column;
 }
 
-.session-data > div {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.session-stats > div > p {
+.stat-col {
   width: 8rem;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 .session-times {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+}
+
+.time-number {
+  width: 2.5rem;
+}
+
+.time-display {
+  width: 6rem;
 }
 
 .time-delete {
+  width: 2.5rem;
   color: #ff4646;
-}
-
-.times-list > div > * {
-  margin: 0 1rem 0 1rem;
-}
-
-.times-list > div > p:nth-child(1) {
-  width: 2.5rem;
-  text-align: right;
-}
-
-.times-list > div > i:nth-child(3) {
-  width: 2.5rem;
-  text-align: left;
-}
-
-.session-stats > div > p:nth-child(1) {
-  text-align: right;
-  margin-right: 0.25rem;
-}
-
-.session-stats > div > p:nth-child(2) {
-  text-align: left;
-  margin-left: 0.25rem;
 }
 
 #root {

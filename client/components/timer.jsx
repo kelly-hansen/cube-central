@@ -46,7 +46,7 @@ export default class Timer extends React.Component {
       className={this.state.running ? 'timer timer-running' : 'timer timer-stopped'}
       onClick={this.state.running ? this.stopTimer : this.startTimer}
       >
-        <p className="counter">{displayedTime}</p>
+        <p className="counter mb-0">{displayedTime}</p>
         <p className="start-stop">{this.state.running ? 'STOP' : 'START'}</p>
       </div>
     );
