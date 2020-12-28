@@ -6,7 +6,7 @@ export default function getDisplayTime(timeInput) {
   time = time - (sec * 1000);
   const hundreths = Math.floor(time / 10).toString(10);
   let displayedSec;
-  sec.length ? displayedSec = '0' + sec : displayedSec = sec;
+  sec.length === 1 ? displayedSec = '0' + sec : displayedSec = sec;
   let displayedHundreths;
   hundreths.length === 1 ? displayedHundreths = '0' + hundreths : displayedHundreths = hundreths;
   const displayedTime = `${min}:${displayedSec}.${displayedHundreths}`;
