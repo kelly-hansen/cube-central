@@ -2,10 +2,21 @@ import React from 'react';
 import getDisplayTime from '../lib/get-display-time';
 
 export default class SessionStats extends React.Component {
+
+  getBest() {
+    let best;
+    this.props.sessionTimes.length > 0 ? best = getDisplayTime(Math.min(...this.props.sessionTimes)) : best = 'N/A';
+    return best;
+  }
+
   render() {
     const statsArray = [
-
+      {
+        name: 'Best',
+        result: this.getBest()
+      }
     ];
+    console.log(statsArray);
 
     return (
       <div className="session-stats">
