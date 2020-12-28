@@ -22,6 +22,23 @@ export default class SessionStats extends React.Component {
     return avg;
   }
 
+  getMedian(times) {
+    const timesCopy = times.slice();
+    let median;
+    if (times.length > 0) {
+      timesCopy.sort((a, b) => a - b);
+      const split = Math.floor(timesCopy.length / 2);
+      if (timesCopy.length % 2) {
+        median = getDisplayTime(timesCopy[split]);
+      } else {
+        median = getDisplayTime((timesCopy[split] + timesCopy[split - 1]) / 2);
+      }
+    } else {
+      median = 'N/A';
+    }
+    return median;
+  }
+
   render() {
     const times = this.props.sessionTimes.slice();
     const statsArray = [
@@ -36,6 +53,10 @@ export default class SessionStats extends React.Component {
       {
         name: 'Average',
         result: this.getAverage(times)
+      },
+      {
+        name: 'Median',
+        result: this.getMedian(times)
       }
     ];
     console.log(statsArray);
