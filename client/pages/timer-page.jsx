@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import YellowSection from '../components/yellow-section';
+import SessionTimes from '../components/session-times';
 
 export default class TimerPage extends React.Component {
   constructor(props) {
@@ -37,7 +38,22 @@ export default class TimerPage extends React.Component {
             </Col>
           </Row>
         </Container>
-        <YellowSection contents="session" sessionTimes={this.state.sessionTimes} />
+        <YellowSection>
+          <p>Session</p>
+          <div className="session-data d-flex">
+            <div className="session-stats">
+              <div className="d-flex justify-content-center mx-3">
+                <p className="stat-col my-0 mr-1 text-right">Best:</p>
+                <p className="stat-col my-0 ml-1 text-left">1:04.43</p>
+              </div>
+              <div className="d-flex justify-content-center mx-3">
+                <p className="stat-col my-0 mr-1 text-right">Worst:</p>
+                <p className="stat-col my-0 ml-1 text-left">1:58.97</p>
+              </div>
+            </div>
+            <SessionTimes sessionTimes={this.state.sessionTimes} />
+          </div>
+        </YellowSection>
       </>
     );
   }
