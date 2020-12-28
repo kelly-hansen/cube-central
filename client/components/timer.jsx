@@ -40,10 +40,12 @@ export default class Timer extends React.Component {
 
   render() {
     const displayedTime = getDisplayTime(this.state.elapsed);
+    let timerStatusClass;
+    this.state.running ? timerStatusClass = 'timer-running' : timerStatusClass = 'timer-stopped';
 
     const fullTimer = (
       <div
-      className={this.state.running ? 'timer timer-running' : 'timer timer-stopped'}
+      className={`timer ${timerStatusClass} d-flex flex-column justify-content-center align-items-center`}
       onClick={this.state.running ? this.stopTimer : this.startTimer}
       >
         <p className="counter mb-0">{displayedTime}</p>
