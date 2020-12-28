@@ -17,8 +17,7 @@ export default class TimerPage extends React.Component {
   }
 
   addNewTime(time) {
-    const sessionTimes = this.state.sessionTimes.slice();
-    sessionTimes.push(time);
+    const sessionTimes = this.state.sessionTimes.concat(time);
     this.setState({
       sessionTimes
     });
