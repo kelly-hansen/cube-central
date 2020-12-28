@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 export default class Header extends React.Component {
   render() {
     return (
-    <Navbar expand="md" className="header">
+    <Navbar expand="md" className="header mb-5">
       <Navbar.Brand>
         <img
           src="/cubelogocircle.svg"

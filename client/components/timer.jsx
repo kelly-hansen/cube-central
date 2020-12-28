@@ -1,4 +1,5 @@
 import React from 'react';
+import getDisplayTime from '../lib/get-display-time';
 
 export default class Timer extends React.Component {
   constructor(props) {
@@ -30,45 +31,24 @@ export default class Timer extends React.Component {
   stopTimer() {
     clearInterval(this.state.intervalId);
     const elapsed = this.state.elapsed;
+    this.props.addNewTime(elapsed);
     this.setState({
       running: false,
       elapsed
     });
   }
 
-  getDisplayTime() {
-    let time = this.state.elapsed;
-    const min = Math.floor(time / 60000);
-    time = time - (min * 60000);
-    const sec = Math.floor(time / 1000).toString(10);
-    time = time - (sec * 1000);
-    const hundreths = Math.floor(time / 10).toString(10);
-    let displayedSec;
-    if (sec.length === 1) {
-      displayedSec = '0' + sec;
-    } else {
-      displayedSec = sec;
-    }
-    let displayedHundreths;
-    if (hundreths.length === 1) {
-      displayedHundreths = '0' + hundreths;
-    } else {
-      displayedHundreths = hundreths;
-    }
-    const displayedTime = `${min}:${displayedSec}.${displayedHundreths}`;
-
-    return displayedTime;
-  }
-
   render() {
-    const displayedTime = this.getDisplayTime();
+    const displayedTime = getDisplayTime(this.state.elapsed);
+    let timerStatusClass;
+    this.state.running ? timerStatusClass = 'timer-running' : timerStatusClass = 'timer-stopped';
 
     const fullTimer = (
       <div
-      className={this.state.running ? 'timer timer-running' : 'timer timer-stopped'}
+      className={`timer ${timerStatusClass} d-flex flex-column justify-content-center align-items-center`}
       onClick={this.state.running ? this.stopTimer : this.startTimer}
       >
-        <p className="counter">{displayedTime}</p>
+        <p className="counter mb-0">{displayedTime}</p>
         <p className="start-stop">{this.state.running ? 'STOP' : 'START'}</p>
       </div>
     );
