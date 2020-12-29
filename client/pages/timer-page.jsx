@@ -19,6 +19,7 @@ export default class TimerPage extends React.Component {
     };
     this.addNewTime = this.addNewTime.bind(this);
     this.deleteTime = this.deleteTime.bind(this);
+    this.toggleResetModal = this.toggleResetModal.bind(this);
     this.resetSession = this.resetSession.bind(this);
   }
 
@@ -35,6 +36,10 @@ export default class TimerPage extends React.Component {
     this.setState({
       sessionTimes: newSessionTimes
     });
+  }
+
+  toggleResetModal() {
+
   }
 
   resetSession() {
