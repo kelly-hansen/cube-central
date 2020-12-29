@@ -125,6 +125,17 @@ export default class SessionStats extends React.Component {
       }
     ];
 
+    const statsForRender = statsArray.map((statObj, ind) => {
+      return (
+        <div
+          key={'stat' + ind}
+          className="d-flex justify-content-center mx-3">
+          <p className="stat-col my-0 mr-1 text-right">{statObj.name + ':'}</p>
+          <p className="stat-col my-0 ml-1 text-left">{statObj.result}</p>
+        </div>
+      );
+    });
+
     return (
       <div className="session-stats">
         <div className="d-flex justify-content-center mx-3">
