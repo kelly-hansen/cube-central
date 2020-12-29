@@ -2,6 +2,15 @@ import React from 'react';
 import getDisplayTime from '../lib/get-display-time';
 
 export default class SessionTimes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteTimeByIndex = this.deleteTimeByIndex.bind(this);
+  }
+
+  deleteTimeByIndex(e) {
+
+  }
+
   render() {
     const timesList = this.props.sessionTimes.map((time, i) => {
       const displayTime = getDisplayTime(this.props.sessionTimes[i]);
