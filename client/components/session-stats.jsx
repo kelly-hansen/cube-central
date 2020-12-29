@@ -4,21 +4,15 @@ import getDisplayTime from '../lib/get-display-time';
 export default class SessionStats extends React.Component {
 
   getBest(times) {
-    let best;
-    times.length > 0 ? best = getDisplayTime(Math.min(...times)) : best = 'N/A';
-    return best;
+    return times.length > 0 ? getDisplayTime(Math.min(...times)) : 'N/A';
   }
 
   getWorst(times) {
-    let worst;
-    times.length > 0 ? worst = getDisplayTime(Math.max(...times)) : worst = 'N/A';
-    return worst;
+    return times.length > 0 ? getDisplayTime(Math.max(...times)) : 'N/A';
   }
 
   getAverage(times) {
-    let avg;
-    times.length > 0 ? avg = getDisplayTime(times.reduce((acc, cur) => acc + cur) / times.length) : avg = 'N/A';
-    return avg;
+    return times.length > 0 ? getDisplayTime(times.reduce((acc, cur) => acc + cur) / times.length) : 'N/A';
   }
 
   getMedian(times) {
