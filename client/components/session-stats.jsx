@@ -28,15 +28,12 @@ export default class SessionStats extends React.Component {
   }
 
   getStdDeviation(times) {
-    if (times.length > 0) {
-      const avg = times.reduce((acc, cur) => acc + cur) / times.length;
-      const varianceArr = times.map(time => Math.pow((time - avg), 2));
-      const variance = varianceArr.reduce((acc, cur) => acc + cur) / varianceArr.length;
-      const stdDeviation = Math.sqrt(variance);
-      return getDisplayTime(stdDeviation);
-    } else {
-      return 'N/A';
-    }
+    if (times.length === 0) return 'N/A';
+    const avg = times.reduce((acc, cur) => acc + cur) / times.length;
+    const varianceArr = times.map(time => Math.pow((time - avg), 2));
+    const variance = varianceArr.reduce((acc, cur) => acc + cur) / varianceArr.length;
+    const stdDeviation = Math.sqrt(variance);
+    return getDisplayTime(stdDeviation);
   }
 
   getBestAvg5(times) {
