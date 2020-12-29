@@ -61,8 +61,30 @@ export default class SessionStats extends React.Component {
         accumulator += times[x];
       }
       const avg = accumulator / 5;
-      if (best && avg < best) {
+      if (best) {
+        if (avg < best) {
+          best = avg;
+        }
+      } else {
         best = avg;
+      }
+    }
+    return getDisplayTime(best);
+  }
+
+  getBestAvg3Of5(times) {
+    if (times.length < 5) {
+      return 'N/A';
+    }
+    let best;
+    for (let i = 0; i < times.length - 4; i++) {
+      const sortedSet = times.slice(i, i + 5).sort((a, b) => a - b);
+      const setOf3 = sortedSet.slice(1, 4);
+      const avg = setOf3.reduce((acc, cur) => acc + cur) / 3;
+      if (best) {
+        if (avg < best) {
+          best = avg;
+        }
       } else {
         best = avg;
       }
@@ -96,9 +118,12 @@ export default class SessionStats extends React.Component {
       {
         name: 'Best Avg 5',
         result: this.getBestAvg5(times)
+      },
+      {
+        name: 'Best Avg 3 of 5',
+        result: this.getBestAvg3Of5(times)
       }
     ];
-    console.log(statsArray);
 
     return (
       <div className="session-stats">
