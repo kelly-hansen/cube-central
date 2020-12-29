@@ -27,7 +27,11 @@ export default class TimerPage extends React.Component {
   }
 
   deleteTime(index) {
-
+    const newSessionTimes = this.state.sessionTimes.slice();
+    newSessionTimes.splice(index, 1);
+    this.setState({
+      sessionTimes: newSessionTimes
+    });
   }
 
   render() {
