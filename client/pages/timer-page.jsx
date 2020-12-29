@@ -8,15 +8,19 @@ import Button from 'react-bootstrap/Button';
 import YellowSection from '../components/yellow-section';
 import SessionStats from '../components/session-stats';
 import SessionTimes from '../components/session-times';
+import Modal from 'react-bootstrap/Modal';
 
 export default class TimerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sessionTimes: []
+      sessionTimes: [],
+      showResetModal: false
     };
     this.addNewTime = this.addNewTime.bind(this);
     this.deleteTime = this.deleteTime.bind(this);
+    this.toggleResetModal = this.toggleResetModal.bind(this);
+    this.resetSession = this.resetSession.bind(this);
   }
 
   addNewTime(time) {
@@ -34,7 +38,21 @@ export default class TimerPage extends React.Component {
     });
   }
 
+  toggleResetModal() {
+    this.setState({
+      showResetModal: !this.state.showResetModal
+    });
+  }
+
+  resetSession() {
+    this.setState({
+      sessionTimes: [],
+      showResetModal: false
+    });
+  }
+
   render() {
+
     return (
       <>
         <Header />
@@ -49,12 +67,34 @@ export default class TimerPage extends React.Component {
           </Row>
         </Container>
         <YellowSection>
-          <p>Session</p>
-          <div className="session-data d-flex">
-            <SessionStats sessionTimes={this.state.sessionTimes} />
-            <SessionTimes sessionTimes={this.state.sessionTimes} deleteTime={this.deleteTime} />
-          </div>
+          <Container>
+            <Row>
+              <Col>
+                <p>Session</p>
+              </Col>
+            </Row>
+            <Row className="mb-5">
+              <Col sm className="d-flex justify-content-center mb-4">
+                <SessionStats sessionTimes={this.state.sessionTimes} />
+              </Col>
+              <Col sm className="d-flex justify-content-center">
+                <SessionTimes sessionTimes={this.state.sessionTimes} deleteTime={this.deleteTime} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button onClick={this.toggleResetModal} className="std-button" variant="danger" block>Reset Session</Button>
+              </Col>
+            </Row>
+          </Container>
         </YellowSection>
+        <Modal show={this.state.showResetModal} onHide={this.toggleResetModal}>
+          <Modal.Body>Are you sure you want to reset the session? All current times will be lost.</Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.toggleResetModal} variant="secondary">Cancel</Button>
+            <Button onClick={this.resetSession} variant="primary">Reset Session</Button>
+          </Modal.Footer>
+        </Modal>
       </>
     );
   }
