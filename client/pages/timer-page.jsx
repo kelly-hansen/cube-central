@@ -17,6 +17,7 @@ export default class TimerPage extends React.Component {
     };
     this.addNewTime = this.addNewTime.bind(this);
     this.deleteTime = this.deleteTime.bind(this);
+    this.resetSession = this.resetSession.bind(this);
   }
 
   addNewTime(time) {
@@ -32,6 +33,10 @@ export default class TimerPage extends React.Component {
     this.setState({
       sessionTimes: newSessionTimes
     });
+  }
+
+  resetSession() {
+
   }
 
   render() {
@@ -65,7 +70,7 @@ export default class TimerPage extends React.Component {
             </Row>
             <Row>
               <Col>
-                <Button className="std-button" variant="danger" block>Reset Session</Button>
+                <Button onClick={this.resetSession} className="std-button" variant="danger" block>Reset Session</Button>
               </Col>
             </Row>
           </Container>
