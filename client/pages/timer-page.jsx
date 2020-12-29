@@ -16,12 +16,21 @@ export default class TimerPage extends React.Component {
       sessionTimes: []
     };
     this.addNewTime = this.addNewTime.bind(this);
+    this.deleteTime = this.deleteTime.bind(this);
   }
 
   addNewTime(time) {
     const sessionTimes = this.state.sessionTimes.concat(time);
     this.setState({
       sessionTimes
+    });
+  }
+
+  deleteTime(index) {
+    const newSessionTimes = this.state.sessionTimes.slice();
+    newSessionTimes.splice(index, 1);
+    this.setState({
+      sessionTimes: newSessionTimes
     });
   }
 
@@ -43,7 +52,7 @@ export default class TimerPage extends React.Component {
           <p>Session</p>
           <div className="session-data d-flex">
             <SessionStats sessionTimes={this.state.sessionTimes} />
-            <SessionTimes sessionTimes={this.state.sessionTimes} />
+            <SessionTimes sessionTimes={this.state.sessionTimes} deleteTime={this.deleteTime} />
           </div>
         </YellowSection>
       </>
