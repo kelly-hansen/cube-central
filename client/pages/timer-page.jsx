@@ -52,7 +52,7 @@ export default class TimerPage extends React.Component {
           <p>Session</p>
           <div className="session-data d-flex">
             <SessionStats sessionTimes={this.state.sessionTimes} />
-            <SessionTimes sessionTimes={this.state.sessionTimes} />
+            <SessionTimes sessionTimes={this.state.sessionTimes} deleteTime={this.deleteTime} />
           </div>
         </YellowSection>
       </>
