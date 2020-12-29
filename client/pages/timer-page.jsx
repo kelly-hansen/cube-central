@@ -54,6 +54,7 @@ export default class TimerPage extends React.Component {
             <SessionStats sessionTimes={this.state.sessionTimes} />
             <SessionTimes sessionTimes={this.state.sessionTimes} deleteTime={this.deleteTime} />
           </div>
+          <Button className="std-button" variant="danger" block>Reset Session</Button>
         </YellowSection>
       </>
     );

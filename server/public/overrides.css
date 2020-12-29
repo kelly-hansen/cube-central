@@ -13,12 +13,28 @@
 }
 
 .btn-primary:hover {
-  background-color: #4d4dff;
-  border-color: #4d4dff;
+  background-color: #2525df;
+  border-color: #2525df;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-  background-color: #4d4dff;
+  background-color: #2525df;
   border-color: #4d4dff;
+}
+
+.btn-danger {
+  background-color: #ff4646;
+  border-color: #ff4646;
+}
+
+.btn-danger:hover {
+  background-color: #df2727;
+  border-color: #df2727;
+}
+
+.btn-danger:focus,
+.btn-danger.focus {
+  background-color: #df2727;
+  border-color: #bd2130;
 }
