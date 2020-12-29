@@ -39,7 +39,10 @@ export default class TimerPage extends React.Component {
   }
 
   toggleResetModal() {
-
+    this.setState({
+      sessionTimes: this.state.sessionTimes,
+      showResetModal: !this.state.showResetModal
+    });
   }
 
   resetSession() {
