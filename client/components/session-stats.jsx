@@ -16,20 +16,15 @@ export default class SessionStats extends React.Component {
   }
 
   getMedian(times) {
+    if (times.length === 0) return 'N/A';
     const timesCopy = times.slice();
-    let median;
-    if (times.length > 0) {
-      timesCopy.sort((a, b) => a - b);
-      const split = Math.floor(timesCopy.length / 2);
-      if (timesCopy.length % 2) {
-        median = getDisplayTime(timesCopy[split]);
-      } else {
-        median = getDisplayTime((timesCopy[split] + timesCopy[split - 1]) / 2);
-      }
+    timesCopy.sort((a, b) => a - b);
+    const split = Math.floor(timesCopy.length / 2);
+    if (timesCopy.length % 2) {
+      return getDisplayTime(timesCopy[split]);
     } else {
-      median = 'N/A';
+      return getDisplayTime((timesCopy[split] + timesCopy[split - 1]) / 2);
     }
-    return median;
   }
 
   getStdDeviation(times) {
