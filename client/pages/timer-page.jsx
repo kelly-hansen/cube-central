@@ -8,12 +8,14 @@ import Button from 'react-bootstrap/Button';
 import YellowSection from '../components/yellow-section';
 import SessionStats from '../components/session-stats';
 import SessionTimes from '../components/session-times';
+import Modal from 'react-bootstrap/Modal';
 
 export default class TimerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sessionTimes: []
+      sessionTimes: [],
+      showResetModal: false
     };
     this.addNewTime = this.addNewTime.bind(this);
     this.deleteTime = this.deleteTime.bind(this);
@@ -36,10 +38,13 @@ export default class TimerPage extends React.Component {
   }
 
   resetSession() {
-
+    this.setState({
+      sessionTimes: []
+    });
   }
 
   render() {
+
     return (
       <>
         <Header />
@@ -75,6 +80,13 @@ export default class TimerPage extends React.Component {
             </Row>
           </Container>
         </YellowSection>
+        <Modal show={this.state.showResetModal}>
+          <Modal.Body>Are you sure you want to reset the session? All current times will be lost.</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary">Cancel</Button>
+            <Button variant="primary">Reset Session</Button>
+          </Modal.Footer>
+        </Modal>
       </>
     );
   }
