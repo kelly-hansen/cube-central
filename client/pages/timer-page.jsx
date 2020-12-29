@@ -16,6 +16,7 @@ export default class TimerPage extends React.Component {
       sessionTimes: []
     };
     this.addNewTime = this.addNewTime.bind(this);
+    this.deleteTime = this.deleteTime.bind(this);
   }
 
   addNewTime(time) {
@@ -23,6 +24,10 @@ export default class TimerPage extends React.Component {
     this.setState({
       sessionTimes
     });
+  }
+
+  deleteTime(index) {
+
   }
 
   render() {
