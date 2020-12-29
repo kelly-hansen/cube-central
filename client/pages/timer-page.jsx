@@ -40,14 +40,14 @@ export default class TimerPage extends React.Component {
 
   toggleResetModal() {
     this.setState({
-      sessionTimes: this.state.sessionTimes,
       showResetModal: !this.state.showResetModal
     });
   }
 
   resetSession() {
     this.setState({
-      sessionTimes: []
+      sessionTimes: [],
+      showResetModal: false
     });
   }
 
@@ -83,16 +83,16 @@ export default class TimerPage extends React.Component {
             </Row>
             <Row>
               <Col>
-                <Button onClick={this.resetSession} className="std-button" variant="danger" block>Reset Session</Button>
+                <Button onClick={this.toggleResetModal} className="std-button" variant="danger" block>Reset Session</Button>
               </Col>
             </Row>
           </Container>
         </YellowSection>
-        <Modal show={this.state.showResetModal}>
+        <Modal show={this.state.showResetModal} onHide={this.toggleResetModal}>
           <Modal.Body>Are you sure you want to reset the session? All current times will be lost.</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary">Cancel</Button>
-            <Button variant="primary">Reset Session</Button>
+            <Button onClick={this.toggleResetModal} variant="secondary">Cancel</Button>
+            <Button onClick={this.resetSession} variant="primary">Reset Session</Button>
           </Modal.Footer>
         </Modal>
       </>
