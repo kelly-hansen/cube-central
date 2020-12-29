@@ -50,6 +50,26 @@ export default class SessionStats extends React.Component {
     }
   }
 
+  getBestAvg5(times) {
+    if (times.length < 5) {
+      return 'N/A';
+    }
+    let best;
+    for (let i = 0; i < times.length - 4; i++) {
+      let accumulator = 0;
+      for (let x = i; x < i + 5; x++) {
+        accumulator += times[x];
+      }
+      const avg = accumulator / 5;
+      if (best && avg < best) {
+        best = avg;
+      } else {
+        best = avg;
+      }
+    }
+    return getDisplayTime(best);
+  }
+
   render() {
     const times = this.props.sessionTimes.slice();
     const statsArray = [
@@ -72,6 +92,10 @@ export default class SessionStats extends React.Component {
       {
         name: 'Std Deviation',
         result: this.getStdDeviation(times)
+      },
+      {
+        name: 'Best Avg 5',
+        result: this.getBestAvg5(times)
       }
     ];
     console.log(statsArray);
