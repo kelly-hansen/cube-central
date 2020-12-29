@@ -123,7 +123,7 @@ export default class SessionStats extends React.Component {
     });
 
     return (
-      <div className="session-stats">
+      <div>
         {statsForRender}
       </div>
     );

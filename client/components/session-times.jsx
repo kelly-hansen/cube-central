@@ -30,9 +30,9 @@ export default class SessionTimes extends React.Component {
     });
 
     return (
-      <div className="session-times">
+      <div>
         <p>Times</p>
-        <div className="times-list">
+        <div>
           {timesList}
         </div>
       </div>

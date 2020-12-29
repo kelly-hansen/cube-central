@@ -49,12 +49,26 @@ export default class TimerPage extends React.Component {
           </Row>
         </Container>
         <YellowSection>
-          <p>Session</p>
-          <div className="session-data d-flex">
-            <SessionStats sessionTimes={this.state.sessionTimes} />
-            <SessionTimes sessionTimes={this.state.sessionTimes} deleteTime={this.deleteTime} />
-          </div>
-          <Button className="std-button" variant="danger" block>Reset Session</Button>
+          <Container>
+            <Row>
+              <Col>
+                <p>Session</p>
+              </Col>
+            </Row>
+            <Row className="mb-5">
+              <Col sm className="d-flex justify-content-center mb-4">
+                <SessionStats sessionTimes={this.state.sessionTimes} />
+              </Col>
+              <Col sm className="d-flex justify-content-center">
+                <SessionTimes sessionTimes={this.state.sessionTimes} deleteTime={this.deleteTime} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button className="std-button" variant="danger" block>Reset Session</Button>
+              </Col>
+            </Row>
+          </Container>
         </YellowSection>
       </>
     );
