@@ -19,14 +19,14 @@ export default class Home extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="pr-2">
             <Button
               className="std-button"
               variant="warning"
               block
             >Log In</Button>
           </Col>
-          <Col>
+          <Col className="pl-2">
             <Button
             className="std-button"
             variant="danger"
