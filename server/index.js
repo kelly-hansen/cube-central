@@ -29,12 +29,13 @@ app.post('/api/auth/sign-up', (req, res, next) => {
   argon2
     .hash(password)
     .then(hashedPassword => {
+      const timestamp = 'now()';
       const sql = `
-      insert into "users" ("username", "hashedPassword")
-      values ($1, $2)
+      insert into "users" ("username", "hashedPassword", "joinDate")
+      values ($1, $2, $3)
       returning "userId", "username", "joinDate";
       `;
-      const params = [username, hashedPassword];
+      const params = [username, hashedPassword, timestamp];
       return db.query(sql, params);
     })
     .then(result => {
