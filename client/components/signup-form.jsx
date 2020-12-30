@@ -27,6 +27,10 @@ export default class SignUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    if (this.state.password.length < 8) {
+      return;
+    }
+    fetch();
   }
 
   render() {
