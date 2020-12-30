@@ -35,9 +35,13 @@ app.post('/api/auth/sign-up', (req, res, next) => {
       returning "userId", "userName", "joinDate";
       `;
       const params = [username, hashedPassword];
-      db.query(sql, params);
-
-    });
+      return db.query(sql, params);
+    })
+    .then(result => {
+      const [userData] = result.rows;
+      res.status(201).json(userData);
+    })
+    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);
