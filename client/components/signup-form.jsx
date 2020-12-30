@@ -35,25 +35,17 @@ export default class SignUpForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-      .then(res => {
-        if (res.status === 201) {
-          res.json()
-            .then(data => {
-              this.setState({
-                status: `Welcome ${data.username}! Your account has been created.`
-              });
-              e.target.reset();
-            })
-            .catch(err => console.error(err));
+      .then(res => res.json())
+      .then(data => {
+        let status;
+        if (data.error) {
+          status = data.error;
         } else {
-          res.json()
-            .then(data => {
-              this.setState({
-                status: data.error
-              });
-            })
-            .catch(err => console.error(err));
+          status = `Welcome ${data.username}! Your account has been created.`;
         }
+        this.setState({
+          status
+        });
       })
       .catch(err => console.error(err));
   }
