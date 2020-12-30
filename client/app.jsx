@@ -1,6 +1,6 @@
 import React from 'react';
 import TimerPage from './pages/timer-page';
-import LogInSignUp from './pages/login-signup';
+import LogInSignUpPage from './pages/login-signup-page';
 import parseRoute from './lib/parse-route';
 
 export default class App extends React.Component {
@@ -24,8 +24,8 @@ export default class App extends React.Component {
     if (route.path === '' || route.path === 'timer') {
       return <TimerPage />;
     }
-    if (route.path === 'signup') {
-      return <LogInSignUp />;
+    if (route.path === 'login') {
+      return <LogInSignUpPage />;
     }
   }
 
