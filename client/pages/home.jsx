@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 export default class Home extends React.Component {
   render() {
@@ -16,6 +16,22 @@ export default class Home extends React.Component {
               <h3 className="title-text mb-0">Speed Cube</h3>
               <h3 className="title-text mb-0">Timer</h3>
             </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button
+              className="std-button"
+              variant="warning"
+              block
+            >Log In</Button>
+          </Col>
+          <Col>
+            <Button
+            className="std-button"
+            variant="danger"
+            block
+          >Sign Up</Button>
           </Col>
         </Row>
       </Container>

@@ -43,3 +43,27 @@ h5 {
   background-color: #df2727;
   border-color: #bd2130;
 }
+
+.btn-warning {
+  color: white;
+  background-color: #ffaf32;
+  border-color: #ffaf32;
+}
+
+.btn-warning:hover {
+  color: white;
+  background-color: #df9217;
+}
+
+.btn-warning:focus,
+.btn-warning.focus {
+  color: white;
+  background-color: #df9217;
+}
+
+.btn-warning:not(:disabled):not(.disabled):active,
+.btn-warning:not(:disabled):not(.disabled).active,
+.show > .btn-warning.dropdown-toggle {
+  color: white;
+  background-color: #df9217;
+}
