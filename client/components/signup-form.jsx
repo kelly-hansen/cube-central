@@ -38,6 +38,10 @@ export default class SignUpForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
+      .then(res => res.json())
+      .then(res => {
+        e.target.reset();
+      })
       .catch(err => console.error(err));
   }
 
@@ -57,6 +61,7 @@ export default class SignUpForm extends React.Component {
                   type="input"
                   placeholder="Enter username"
                   onChange={this.handleChangeUsername}
+                  required
                 />
               </Form.Group>
               <Form.Group controlId="password" className="text-left">
@@ -65,6 +70,7 @@ export default class SignUpForm extends React.Component {
                   type="password"
                   placeholder="Enter password"
                   onChange={this.handleChangePassword}
+                  required
                 />
                 <Form.Text muted>
                   Password must be at least 8 characters long.
