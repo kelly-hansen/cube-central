@@ -12,6 +12,10 @@ body {
   font-weight: 600;
 }
 
+.home-img {
+  max-height: 6rem;
+}
+
 .nav-img {
   max-height: 3rem;
 }
