@@ -10,7 +10,7 @@ CREATE TABLE "users" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL,
 	"hashedPassword" TEXT NOT NULL,
-	"joinDate" DATE NOT NULL,
+	"joinDate" timestamptz NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
