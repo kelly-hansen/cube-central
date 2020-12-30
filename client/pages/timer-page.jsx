@@ -1,14 +1,10 @@
 import React from 'react';
 import Header from '../components/header';
 import Timer from '../components/timer';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import YellowSection from '../components/yellow-section';
 import SessionStats from '../components/session-stats';
 import SessionTimes from '../components/session-times';
-import Modal from 'react-bootstrap/Modal';
 
 export default class TimerPage extends React.Component {
   constructor(props) {

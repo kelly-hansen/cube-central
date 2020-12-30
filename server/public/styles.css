@@ -78,6 +78,11 @@ body {
   color: #ff4646;
 }
 
+.form-cont {
+  background-color: #ffff64;
+  border-radius: 0.25rem;
+}
+
 #root {
   min-height: 100vh;
 }
