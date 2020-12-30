@@ -16,6 +16,9 @@ export default class SignUpForm extends React.Component {
               <Form.Group controlId="password" className="text-left">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Enter password" />
+                <Form.Text muted>
+                  Password must be at least 8 characters long.
+                </Form.Text>
               </Form.Group>
               <Button variant="primary" type="submit">
                 Sign Up
