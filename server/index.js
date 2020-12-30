@@ -4,7 +4,7 @@ const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
-const { argon2d } = require('argon2');
+const argon2 = require('argon2');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
@@ -26,13 +26,13 @@ app.post('/api/auth/sign-up', (req, res, next) => {
   if (password.length < 8) {
     throw new ClientError(400, 'password must be at least 8 characters');
   }
-  argon2d
+  argon2
     .hash(password)
     .then(hashedPassword => {
       const sql = `
       insert into "users" ("username", "hashedPassword")
       values ($1, $2)
-      returning "userId", "userName", "joinDate";
+      returning "userId", "username", "joinDate";
       `;
       const params = [username, hashedPassword];
       return db.query(sql, params);

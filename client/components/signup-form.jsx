@@ -30,7 +30,15 @@ export default class SignUpForm extends React.Component {
     if (this.state.password.length < 8) {
       return;
     }
-    fetch();
+
+    fetch('/api/auth/sign-up', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .catch(err => console.error(err));
   }
 
   render() {
