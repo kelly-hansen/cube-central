@@ -9,11 +9,11 @@ export default class SignUpForm extends React.Component {
           <Col sm="4" className="form-cont p-4 text-center">
             <h5>Sign Up</h5>
             <Form className="text-center">
-              <Form.Group controlId="formBasicEmail" className="text-left">
+              <Form.Group controlId="username" className="text-left">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="email" placeholder="Enter username" />
+                <Form.Control type="input" placeholder="Enter username" />
               </Form.Group>
-              <Form.Group controlId="formBasicPassword" className="text-left">
+              <Form.Group controlId="password" className="text-left">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Enter password" />
               </Form.Group>
