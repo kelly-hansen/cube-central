@@ -1,4 +1,5 @@
 import React from 'react';
+import Home from './pages/home';
 import TimerPage from './pages/timer-page';
 import LogInSignUpPage from './pages/login-signup-page';
 import parseRoute from './lib/parse-route';
@@ -21,10 +22,11 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === '' || route.path === 'timer') {
+    if (route.path === '') {
+      return <Home />;
+    } else if (route.path === 'timer') {
       return <TimerPage />;
-    }
-    if (route.path === 'login') {
+    } else if (route.path === 'login') {
       return <LogInSignUpPage />;
     }
   }
