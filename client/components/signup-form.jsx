@@ -28,10 +28,6 @@ export default class SignUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.state.password.length < 8) {
-      return;
-    }
-
     fetch('/api/auth/sign-up', {
       method: 'POST',
       headers: {
@@ -39,12 +35,25 @@ export default class SignUpForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          status: `Welcome ${data.username}! Your account has been created.`
-        });
-        e.target.reset();
+      .then(res => {
+        if (res.status === 201) {
+          res.json()
+            .then(data => {
+              this.setState({
+                status: `Welcome ${data.username}! Your account has been created.`
+              });
+              e.target.reset();
+            })
+            .catch(err => console.error(err));
+        } else {
+          res.json()
+            .then(data => {
+              this.setState({
+                status: data.error
+              });
+            })
+            .catch(err => console.error(err));
+        }
       })
       .catch(err => console.error(err));
   }
