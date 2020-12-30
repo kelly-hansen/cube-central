@@ -21,10 +21,10 @@ app.use(jsonMiddleware);
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    throw new ClientError(400, 'username and password are required fields');
+    throw new ClientError(400, 'Username and Password are required fields.');
   }
   if (password.length < 8) {
-    throw new ClientError(400, 'password must be at least 8 characters');
+    throw new ClientError(400, 'Password must be at least 8 characters.');
   }
   argon2
     .hash(password)

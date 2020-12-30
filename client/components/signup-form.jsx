@@ -6,7 +6,8 @@ export default class SignUpForm extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      status: ''
     };
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -39,7 +40,10 @@ export default class SignUpForm extends React.Component {
       body: JSON.stringify(this.state)
     })
       .then(res => res.json())
-      .then(res => {
+      .then(data => {
+        this.setState({
+          status: `Welcome ${data.username}! Your account has been created.`
+        });
         e.target.reset();
       })
       .catch(err => console.error(err));
@@ -80,6 +84,7 @@ export default class SignUpForm extends React.Component {
                 Sign Up
               </Button>
             </Form>
+            <p className="mt-3 mb-0">{this.state.status}</p>
           </Col>
         </Row>
       </Container>
