@@ -35,7 +35,13 @@ export default class LogInForm extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(this.state)
-    });
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.user && result.token) {
+          this.context.handleLogIn(result);
+        }
+      });
 
   }
 
