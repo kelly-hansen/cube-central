@@ -29,26 +29,14 @@ export default class LogInForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    fetch('/api/auth/sign-up', {
+    fetch('/api/auth/log-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(this.state)
-    })
-      .then(res => res.json())
-      .then(data => {
-        let status;
-        if (data.error) {
-          status = data.error;
-        } else {
-          status = `Welcome ${data.username}! Your account has been created.`;
-        }
-        this.setState({
-          status
-        });
-      })
-      .catch(err => console.error(err));
+    });
+
   }
 
   render() {
