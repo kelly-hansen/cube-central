@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
-import SignUpForm from '../components/signup-form';
+import SignUpForm from '../components/sign-up-form';
 import LogInForm from '../components/login-form';
 import AppContext from '../lib/app-context';
 

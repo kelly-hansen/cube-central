@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './pages/home';
 import Profile from './pages/profile';
 import TimerPage from './pages/timer-page';
-import LogInSignUpPage from './pages/login-signup-page';
+import LogInSignUpPage from './pages/login-sign-up-page';
 import parseRoute from './lib/parse-route';
 import AppContext from './lib/app-context';
 
@@ -34,7 +34,7 @@ export default class App extends React.Component {
       return this.state.user === null ? <Home /> : <Profile />;
     } else if (route.path === 'timer') {
       return <TimerPage />;
-    } else if (route.path === 'login' || route.path === 'signup') {
+    } else if (route.path === 'login' || route.path === 'sign-up') {
       return <LogInSignUpPage />;
     }
   }
