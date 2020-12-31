@@ -44,6 +44,22 @@ h5 {
   border-color: #bd2130;
 }
 
+.btn-success {
+  background-color: #4bed4b;
+  border-color: #4bed4b;
+}
+
+.btn-success:hover {
+  background-color: #2dd12d;
+  border-color: #2dd12d;
+}
+
+.btn-success:focus,
+.btn-success.focus {
+  background-color: #2dd12d;
+  border-color: #2dd12d;
+}
+
 .btn-warning {
   color: white;
   background-color: #ffaf32;

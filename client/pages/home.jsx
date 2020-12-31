@@ -24,29 +24,34 @@ export default class Home extends React.Component {
             <Row className="py-2">
               <Col className="pr-2">
                 <Button
-                  className="std-button"
+                  href="#login"
+                  className="std-button d-flex justify-content-center align-items-center"
                   variant="warning"
                   block
                 >Log In</Button>
               </Col>
               <Col className="pl-2">
                 <Button
-                className="std-button"
-                variant="danger"
-                block
-              >Sign Up</Button>
+                  href="#signup"
+                  className="std-button d-flex justify-content-center align-items-center"
+                  variant="danger"
+                  block
+                >Sign Up</Button>
               </Col>
             </Row>
             <Row className="py-2">
               <Col>
-                <div className="timer-btn d-flex justify-content-center align-items-center">
+                <Button
+                  href="#timer"
+                  variant="success"
+                  className="timer-btn d-flex justify-content-center align-items-center">
                   <img
                     src="/stopwatch.svg"
                     alt="Timer"
                     className="timer-btn-icon mr-2"
                   />
                   <h4 className="mb-0">Timer</h4>
-                </div>
+                </Button>
               </Col>
             </Row>
           </Container>
