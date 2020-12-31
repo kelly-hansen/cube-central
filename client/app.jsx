@@ -17,7 +17,11 @@ export default class App extends React.Component {
   }
 
   handleLogIn(result) {
-
+    const { user, token } = result;
+    window.localStorage.setItem('speed-cube-timer-jwt', token);
+    this.setState({
+      user
+    });
   }
 
   componentDidMount() {
