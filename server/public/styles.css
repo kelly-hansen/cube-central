@@ -12,6 +12,10 @@ body {
   font-weight: 600;
 }
 
+.home-btns-cont {
+  max-width: 750px;
+}
+
 .home-img {
   max-height: 6rem;
 }
