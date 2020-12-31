@@ -18,6 +18,7 @@ export default class Header extends React.Component {
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Nav>
+          {this.context.user && <Nav.Link className="text-center" disabled>{`Welcome, ${this.context.user.username}!`}</Nav.Link>}
           {this.context.user && <Nav.Link className="text-center" href="#">Profile</Nav.Link>}
           <Nav.Link className="text-center" href="#timer">Timer</Nav.Link>
           <Nav.Link className="text-center" href="#world-records">World Records</Nav.Link>
