@@ -1,3 +1,4 @@
+h3,
 h5 {
   font-weight: 600;
 }
@@ -41,4 +42,44 @@ h5 {
 .btn-danger.focus {
   background-color: #df2727;
   border-color: #bd2130;
+}
+
+.btn-success {
+  background-color: #4bed4b;
+  border-color: #4bed4b;
+}
+
+.btn-success:hover {
+  background-color: #2dd12d;
+  border-color: #2dd12d;
+}
+
+.btn-success:focus,
+.btn-success.focus {
+  background-color: #2dd12d;
+  border-color: #2dd12d;
+}
+
+.btn-warning {
+  color: white;
+  background-color: #ffaf32;
+  border-color: #ffaf32;
+}
+
+.btn-warning:hover {
+  color: white;
+  background-color: #df9217;
+}
+
+.btn-warning:focus,
+.btn-warning.focus {
+  color: white;
+  background-color: #df9217;
+}
+
+.btn-warning:not(:disabled):not(.disabled):active,
+.btn-warning:not(:disabled):not(.disabled).active,
+.show > .btn-warning.dropdown-toggle {
+  color: white;
+  background-color: #df9217;
 }

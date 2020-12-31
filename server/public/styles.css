@@ -12,6 +12,28 @@ body {
   font-weight: 600;
 }
 
+.home-btns-cont {
+  max-width: 750px;
+}
+
+.home-img {
+  max-height: 6rem;
+}
+
+.timer-btn {
+  background-color: #4bed4b;
+  height: 5rem;
+}
+
+.timer-btn:hover {
+  cursor: pointer;
+  background-color: #2dd12d;
+}
+
+.timer-btn-icon {
+  height: 2rem;
+}
+
 .nav-img {
   max-height: 3rem;
 }
@@ -83,6 +105,16 @@ body {
   border-radius: 0.25rem;
 }
 
+.profile-cube-icon {
+  height: 3rem;
+}
+
 #root {
   min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .home-info-text {
+    font-size: 1.25rem;
+  }
 }
