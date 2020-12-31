@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import AppContext from '../lib/app-context';
 
 export default class LogInForm extends React.Component {
   constructor(props) {
@@ -92,3 +93,5 @@ export default class LogInForm extends React.Component {
     );
   }
 }
+
+LogInForm.contextType = AppContext;
