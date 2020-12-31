@@ -5,6 +5,7 @@ const staticMiddleware = require('./static-middleware');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
@@ -70,6 +71,8 @@ app.post('/api/auth/log-in', (req, res, next) => {
           if (!isMatching) {
             throw new ClientError(401, 'Invalid login');
           }
+          const payload = { userId, username };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
         });
     });
 });
