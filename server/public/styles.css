@@ -27,6 +27,11 @@ body {
   border-radius: 0.25rem;
 }
 
+.timer-btn:hover {
+  cursor: pointer;
+  background-color: #2dd12d;
+}
+
 .timer-btn-icon {
   height: 2rem;
 }
