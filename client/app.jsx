@@ -13,6 +13,11 @@ export default class App extends React.Component {
       user: null,
       route: parseRoute(window.location.hash)
     };
+    this.handleSignIn = this.handleSignIn.bind(this);
+  }
+
+  handleSignIn(result) {
+
   }
 
   componentDidMount() {
@@ -26,7 +31,7 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     if (route.path === '') {
-      return <Profile />;
+      return this.state.user === null ? <Home /> : <Profile />;
     } else if (route.path === 'timer') {
       return <TimerPage />;
     } else if (route.path === 'login' || route.path === 'signup') {
