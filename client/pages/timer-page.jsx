@@ -70,7 +70,7 @@ export default class TimerPage extends React.Component {
                 <p>Session</p>
               </Col>
             </Row>
-            <Row className="mb-5">
+            <Row className="mb-4">
               <Col sm className="d-flex justify-content-center mb-4">
                 <SessionStats sessionTimes={this.state.sessionTimes} />
               </Col>
@@ -79,7 +79,10 @@ export default class TimerPage extends React.Component {
               </Col>
             </Row>
             <Row>
-              <Col>
+              {this.context.user && <Col lg className="mt-3">
+                <Button className="std-button" block>Save Record</Button>
+              </Col>}
+              <Col lg className="mt-3">
                 <Button onClick={this.toggleResetModal} className="std-button" variant="danger" block>Reset Session</Button>
               </Col>
             </Row>
