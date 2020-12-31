@@ -12,7 +12,9 @@ export default class TimerPage extends React.Component {
     super(props);
     this.state = {
       sessionTimes: [],
-      showResetModal: false
+      showResetModal: false,
+      bestSingle: null,
+      bestAverage3Of5: null
     };
     this.addNewTime = this.addNewTime.bind(this);
     this.deleteTime = this.deleteTime.bind(this);
