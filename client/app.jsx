@@ -4,6 +4,7 @@ import Profile from './pages/profile';
 import TimerPage from './pages/timer-page';
 import LogInSignUpPage from './pages/login-signup-page';
 import parseRoute from './lib/parse-route';
+import AppContext from './lib/app-context';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class App extends React.Component {
       return <Profile />;
     } else if (route.path === 'timer') {
       return <TimerPage />;
-    } else if (route.path === 'login') {
+    } else if (route.path === 'login' || route.path === 'signup') {
       return <LogInSignUpPage />;
     }
   }
