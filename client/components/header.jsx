@@ -20,7 +20,7 @@ export default class Header extends React.Component {
         <Nav>
           <Nav.Link className="text-center" href="#timer">Timer</Nav.Link>
           <Nav.Link className="text-center" href="#world-records">World Records</Nav.Link>
-          <Button href="#login">Log In/Sign Up</Button>
+          <Button href="#log-in">Log In/Sign Up</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

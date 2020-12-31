@@ -82,7 +82,7 @@ export default class SignUpForm extends React.Component {
                 </Form.Text>
               </Form.Group>
               <div className="my-3">
-                <a href="#login">Already have an account? Click here to log in.</a>
+                <a href="#log-in">Already have an account? Click here to log in.</a>
               </div>
               <Button variant="primary" type="submit">
                 Sign Up

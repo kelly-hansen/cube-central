@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/header';
 import SignUpForm from '../components/sign-up-form';
-import LogInForm from '../components/login-form';
+import LogInForm from '../components/log-in-form';
 import AppContext from '../lib/app-context';
 
 export default class LogInSignUpPage extends React.Component {
@@ -9,7 +9,7 @@ export default class LogInSignUpPage extends React.Component {
     return (
       <>
         <Header />
-        {this.context.route.path === 'login' ? <LogInForm /> : <SignUpForm />}
+        {this.context.route.path === 'log-in' ? <LogInForm /> : <SignUpForm />}
       </>
     );
   }

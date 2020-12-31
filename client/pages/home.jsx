@@ -24,7 +24,7 @@ export default class Home extends React.Component {
             <Row className="py-2">
               <Col className="pr-2">
                 <Button
-                  href="#login"
+                  href="#log-in"
                   className="std-button d-flex justify-content-center align-items-center"
                   variant="warning"
                   block
@@ -32,7 +32,7 @@ export default class Home extends React.Component {
               </Col>
               <Col className="pl-2">
                 <Button
-                  href="#signup"
+                  href="#sign-up"
                   className="std-button d-flex justify-content-center align-items-center"
                   variant="danger"
                   block
