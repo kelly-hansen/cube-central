@@ -5,6 +5,7 @@ import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import YellowSection from '../components/yellow-section';
 import SessionStats from '../components/session-stats';
 import SessionTimes from '../components/session-times';
+import AppContext from '../lib/app-context';
 
 export default class TimerPage extends React.Component {
   constructor(props) {
@@ -95,3 +96,5 @@ export default class TimerPage extends React.Component {
     );
   }
 }
+
+TimerPage.contextType = AppContext;
