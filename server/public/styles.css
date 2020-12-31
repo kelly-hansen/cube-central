@@ -16,6 +16,17 @@ body {
   max-height: 6rem;
 }
 
+.timer-btn {
+  background-color: #4bed4b;
+  color: white;
+  height: 5rem;
+  border-radius: 0.25rem;
+}
+
+.timer-btn-icon {
+  height: 2rem;
+}
+
 .nav-img {
   max-height: 3rem;
 }

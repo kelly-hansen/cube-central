@@ -18,7 +18,7 @@ export default class Home extends React.Component {
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row className="py-2">
           <Col className="pr-2">
             <Button
               className="std-button"
@@ -32,6 +32,18 @@ export default class Home extends React.Component {
             variant="danger"
             block
           >Sign Up</Button>
+          </Col>
+        </Row>
+        <Row className="py-2">
+          <Col>
+            <div className="timer-btn d-flex justify-content-center align-items-center">
+              <img
+                src="/stopwatch.svg"
+                alt="Timer"
+                className="timer-btn-icon mr-2"
+              />
+              <h4 className="mb-0">Timer</h4>
+            </div>
           </Col>
         </Row>
       </Container>
