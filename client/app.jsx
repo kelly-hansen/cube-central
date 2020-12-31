@@ -29,7 +29,10 @@ export default class App extends React.Component {
   }
 
   handleLogOut() {
-
+    window.localStorage.removeItem('speed-cube-timer-jwt');
+    this.setState({
+      user: null
+    });
   }
 
   componentDidMount() {
