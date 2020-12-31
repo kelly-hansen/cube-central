@@ -42,7 +42,6 @@ export default class LogInForm extends React.Component {
           this.context.handleLogIn(result);
         }
       });
-
   }
 
   render() {
