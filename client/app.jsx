@@ -5,6 +5,7 @@ import TimerPage from './pages/timer-page';
 import LogInSignUpPage from './pages/log-in-sign-up-page';
 import parseRoute from './lib/parse-route';
 import AppContext from './lib/app-context';
+import decodeToken from './lib/decode-token';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -41,6 +42,9 @@ export default class App extends React.Component {
         route: parseRoute(window.location.hash)
       });
     });
+    const token = window.localStorage.getItem('speed-cube-timer-jwt');
+    const user = token ? decodeToken(token) : null;
+    this.setState({ user });
   }
 
   renderPage() {
