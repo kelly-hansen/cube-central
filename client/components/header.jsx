@@ -3,10 +3,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import AppContext from '../lib/app-context';
+
 export default class Header extends React.Component {
+
   render() {
+    const goHome = eventKey => (eventKey === '#') && (window.location.hash = '#');
+
     return (
-    <Navbar expand="md" className="header mb-5">
+    <Navbar expand="md" className="header mb-5" collapseOnSelect onSelect={goHome}>
       <Navbar.Brand href="#">
         <img
           src="/cubelogocircle.svg"
@@ -29,5 +33,4 @@ export default class Header extends React.Component {
     );
   }
 }
-
 Header.contextType = AppContext;
