@@ -81,6 +81,9 @@ export default class SignUpForm extends React.Component {
                   Password must be at least 8 characters long.
                 </Form.Text>
               </Form.Group>
+              <div className="my-3">
+                <a href="#login">Already have an account? Click here to log in.</a>
+              </div>
               <Button variant="primary" type="submit">
                 Sign Up
               </Button>

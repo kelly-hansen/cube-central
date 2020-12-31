@@ -78,6 +78,9 @@ export default class LogInForm extends React.Component {
                   required
                 />
               </Form.Group>
+              <div className="my-3">
+                <a href="#signup">Don&apos;t have an account? Sign up now.</a>
+              </div>
               <Button variant="primary" type="submit">
                 Log In
               </Button>
