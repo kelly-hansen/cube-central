@@ -41,7 +41,7 @@ export default class App extends React.Component {
     };
     return (
       <AppContext.Provider value={contextValue}>
-        this.renderPage();
+        {this.renderPage()}
       </AppContext.Provider>
     );
   }
