@@ -40,6 +40,10 @@ export default class LogInForm extends React.Component {
       .then(result => {
         if (result.user && result.token) {
           this.context.handleLogIn(result);
+        } else {
+          this.setState({
+            status: result.error
+          });
         }
       });
   }
