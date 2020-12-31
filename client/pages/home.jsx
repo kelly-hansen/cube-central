@@ -52,11 +52,11 @@ export default class Home extends React.Component {
           </Container>
         </div>
         <YellowSection>
-          <div className="d-flex flex-column align-items-center">
-            <p className="w-50 font-weight-bold">
+          <div className="d-flex flex-column align-items-center justify-content-center h-100">
+            <p className="home-info-text w-50 font-weight-bold">
               Use the timer to beat your best solve times
             </p>
-            <p className="w-50 font-weight-bold">
+            <p className="home-info-text w-50 font-weight-bold">
               Sign up for free to save your records
             </p>
           </div>
