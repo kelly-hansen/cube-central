@@ -57,6 +57,11 @@ app.post('/api/auth/log-in', (req, res, next) => {
    where "userName" = $1;
   `;
   const params = [username];
+  db.query(sql, params)
+    .then(result => {
+      const [userInfo] = result.rows;
+
+    });
 });
 
 app.use(errorMiddleware);
