@@ -22,6 +22,9 @@ export default class App extends React.Component {
     this.setState({
       user
     });
+    const url = new URL(window.location);
+    url.hash = '#';
+    window.location.replace(url);
   }
 
   componentDidMount() {
