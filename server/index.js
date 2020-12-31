@@ -53,7 +53,8 @@ app.post('/api/auth/log-in', (req, res, next) => {
   }
   const sql = `
   select "userId",
-         "hashedPassword"
+         "hashedPassword",
+         "joinDate"
     from "users"
    where "username" = $1;
   `;
@@ -64,14 +65,14 @@ app.post('/api/auth/log-in', (req, res, next) => {
       if (!userInfo) {
         throw new ClientError(401, 'Invalid login');
       }
-      const { userId, hashedPassword } = userInfo;
+      const { userId, hashedPassword, joinDate } = userInfo;
       return argon2
         .verify(hashedPassword, password)
         .then(isMatching => {
           if (!isMatching) {
             throw new ClientError(401, 'Invalid login');
           }
-          const payload = { userId, username };
+          const payload = { userId, username, joinDate };
           const token = jwt.sign(payload, process.env.TOKEN_SECRET);
           res.json({ token, user: payload });
         });
