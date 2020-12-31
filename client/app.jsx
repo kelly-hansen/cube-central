@@ -14,6 +14,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash)
     };
     this.handleLogIn = this.handleLogIn.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   handleLogIn(result) {
@@ -25,6 +26,10 @@ export default class App extends React.Component {
     const url = new URL(window.location);
     url.hash = '#';
     window.location.replace(url);
+  }
+
+  handleLogOut() {
+
   }
 
   componentDidMount() {
