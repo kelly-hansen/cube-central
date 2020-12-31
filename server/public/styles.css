@@ -105,6 +105,10 @@ body {
   border-radius: 0.25rem;
 }
 
+.profile-cube-icon {
+  height: 3rem;
+}
+
 #root {
   min-height: 100vh;
 }
