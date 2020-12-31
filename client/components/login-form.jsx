@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-export default class SignUpForm extends React.Component {
+export default class LogInForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,7 +55,7 @@ export default class SignUpForm extends React.Component {
       <Container>
         <Row className="d-flex justify-content-center px-3">
           <Col sm="4" className="form-cont p-4 text-center">
-            <h5>Sign Up</h5>
+            <h5>Log In</h5>
             <Form
               onSubmit={this.handleSubmit}
               className="text-center"
@@ -77,12 +77,9 @@ export default class SignUpForm extends React.Component {
                   onChange={this.handleChangePassword}
                   required
                 />
-                <Form.Text muted>
-                  Password must be at least 8 characters long.
-                </Form.Text>
               </Form.Group>
               <Button variant="primary" type="submit">
-                Sign Up
+                Log In
               </Button>
             </Form>
             <p className="mt-3 mb-0">{this.state.status}</p>

@@ -9,7 +9,7 @@ export default class LogInSignUpPage extends React.Component {
     return (
       <>
         <Header />
-        {this.context.path === 'login' ? <LogInForm /> : <SignUpForm />}
+        {this.context.route.path === 'login' ? <LogInForm /> : <SignUpForm />}
       </>
     );
   }
