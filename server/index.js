@@ -48,7 +48,7 @@ app.post('/api/auth/sign-up', (req, res, next) => {
 app.post('/api/auth/log-in', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    throw new ClientError(401, 'invalid login');
+    throw new ClientError(401, 'Invalid login');
   }
   const sql = `
   select "userId",
@@ -60,6 +60,9 @@ app.post('/api/auth/log-in', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const [userInfo] = result.rows;
+      if (!userInfo) {
+        throw new ClientError(401, 'Invalid login');
+      }
 
     });
 });
