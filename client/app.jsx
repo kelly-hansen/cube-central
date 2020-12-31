@@ -35,6 +35,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    return this.renderPage();
+    const contextValue = {
+      user: this.state.user,
+      route: this.state.route
+    };
+    return (
+      <AppContext.Provider value={contextValue}>
+        this.renderPage();
+      </AppContext.Provider>
+    );
   }
 }
