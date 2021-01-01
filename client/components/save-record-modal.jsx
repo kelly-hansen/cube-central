@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
+import getDisplayTime from '../lib/get-display-time';
 
 export default class SaveRecordModal extends React.Component {
   constructor(props) {
@@ -25,10 +26,23 @@ export default class SaveRecordModal extends React.Component {
   }
 
   render() {
+    let displayedRecord;
+    if (this.props.sessionRecords === null) {
+      displayedRecord = 'No session time to display';
+    } else if (this.state.recordType === 'Single') {
+      displayedRecord = `Time: ${getDisplayTime(this.props.sessionRecords.single)}`;
+    } else if (this.state.recordType === 'Average 3 of 5') {
+      if (this.props.sessionRecords.bestAverage3Of5 === null) {
+        displayedRecord = 'Need at least 5 times in session';
+      } else {
+        displayedRecord = `Time: ${getDisplayTime(this.props.sessionRecords.bestAverage3Of5)}`;
+      }
+    }
+
     return (
       <Modal show={true}>
         <Modal.Header>
-          <h5>Save New Record</h5>
+          <h5 className="mb-0">New Record</h5>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -54,7 +68,8 @@ export default class SaveRecordModal extends React.Component {
                 <option>Average 3 of 5</option>
               </Form.Control>
             </Form.Group>
-            <div className="d-flex justify-content-end">
+            <p className="text-center my-5">{displayedRecord}</p>
+            <div className="d-flex justify-content-center">
               <Button variant="secondary" className="align-self-end">Cancel</Button>
               <Button type="submit" className="ml-2">Submit New Record</Button>
             </div>

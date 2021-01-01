@@ -32,8 +32,8 @@ export default class TimerPage extends React.Component {
     result.bestSingle = [sessionTimes.length > 0 ? Math.min(...sessionTimes) : null];
 
     if (sessionTimes.length < 5) {
-      result.bestAvg3Of5 = null;
-      result.bestAvg3Of5Arr = null;
+      result.bestAverage3Of5 = null;
+      result.bestAverage3Of5Arr = null;
     } else {
       let bestAvg;
       let bestStartingIndex = 0;
@@ -50,8 +50,8 @@ export default class TimerPage extends React.Component {
           bestAvg = avg;
         }
       }
-      result.bestAvg3Of5 = [bestAvg];
-      result.bestAvg3Of5Arr = sessionTimes.slice(bestStartingIndex, bestStartingIndex + 5);
+      result.bestAverage3Of5 = [bestAvg];
+      result.bestAverage3Of5Arr = sessionTimes.slice(bestStartingIndex, bestStartingIndex + 5);
     }
 
     return result;
