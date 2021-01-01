@@ -5,8 +5,8 @@ export default class SaveRecordModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      puzzleId: null,
-      recordTypeId: null
+      puzzle: null,
+      recordType: null
     };
   }
 
