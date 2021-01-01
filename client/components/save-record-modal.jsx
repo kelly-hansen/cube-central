@@ -2,6 +2,14 @@ import React from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 
 export default class SaveRecordModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      puzzleId: null,
+      recordTypeId: null
+    };
+  }
+
   render() {
     return (
       <Modal show={true}>
