@@ -40,7 +40,7 @@ export default class SaveRecordModal extends React.Component {
     }
 
     return (
-      <Modal show={true}>
+      <Modal show={this.props.showModal} onHide={this.props.toggleSaveRecordModal}>
         <Modal.Header>
           <h5 className="mb-0">New Record</h5>
         </Modal.Header>
@@ -70,7 +70,7 @@ export default class SaveRecordModal extends React.Component {
             </Form.Group>
             <p className="text-center my-5">{displayedRecord}</p>
             <div className="d-flex justify-content-center">
-              <Button variant="secondary" className="align-self-end">Cancel</Button>
+              <Button onClick={this.props.toggleSaveRecordModal} variant="secondary" className="align-self-end">Cancel</Button>
               <Button type="submit" className="ml-2">Submit New Record</Button>
             </div>
           </Form>

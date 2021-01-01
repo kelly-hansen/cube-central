@@ -22,7 +22,7 @@ export default class TimerPage extends React.Component {
     this.deleteTime = this.deleteTime.bind(this);
     this.resetSession = this.resetSession.bind(this);
     this.toggleResetModal = this.toggleResetModal.bind(this);
-    this.toggleSubmitRecordModal = this.toggleSubmitRecordModal.bind(this);
+    this.toggleSaveRecordModal = this.toggleSaveRecordModal.bind(this);
   }
 
   getSessionRecords(sessionTimes) {
@@ -92,7 +92,7 @@ export default class TimerPage extends React.Component {
     });
   }
 
-  toggleSubmitRecordModal() {
+  toggleSaveRecordModal() {
     this.setState({
       showSaveRecordModal: !this.state.showSaveRecordModal
     });
@@ -130,7 +130,7 @@ export default class TimerPage extends React.Component {
             </Row>
             <Row>
               {this.context.user && <Col lg className="mt-3">
-                <Button onClick={this.toggleSubmitRecordModal} className="std-button" block>Save Record</Button>
+                <Button onClick={this.toggleSaveRecordModal} className="std-button" block>Save Record</Button>
               </Col>}
               <Col lg className="mt-3">
                 <Button onClick={this.toggleResetModal} className="std-button" variant="danger" block>Reset Session</Button>
@@ -145,7 +145,11 @@ export default class TimerPage extends React.Component {
             <Button onClick={this.resetSession} variant="primary">Reset Session</Button>
           </Modal.Footer>
         </Modal>
-        {this.state.showSaveRecordModal && <SaveRecordModal sessionRecords={this.state.sessionRecords} />}
+        <SaveRecordModal
+          sessionRecords={this.state.sessionRecords}
+          toggleSaveRecordModal={this.toggleSaveRecordModal}
+          showModal={this.state.showSaveRecordModal}
+        />
       </>
     );
   }
