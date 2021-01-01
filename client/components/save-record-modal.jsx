@@ -30,12 +30,12 @@ export default class SaveRecordModal extends React.Component {
     if (this.props.sessionRecords === null) {
       displayedRecord = 'No session time to display';
     } else if (this.state.recordType === 'Single') {
-      displayedRecord = `Time: ${getDisplayTime(this.props.sessionRecords.single)}`;
+      displayedRecord = getDisplayTime(this.props.sessionRecords.bestSingle);
     } else if (this.state.recordType === 'Average 3 of 5') {
       if (this.props.sessionRecords.bestAverage3Of5 === null) {
         displayedRecord = 'Need at least 5 times in session';
       } else {
-        displayedRecord = `Time: ${getDisplayTime(this.props.sessionRecords.bestAverage3Of5)}`;
+        displayedRecord = getDisplayTime(this.props.sessionRecords.bestAverage3Of5);
       }
     }
 
