@@ -14,13 +14,15 @@ export default class TimerPage extends React.Component {
     this.state = {
       sessionTimes: [],
       sessionRecords: null,
-      showResetModal: false
+      showResetModal: false,
+      showSaveRecordModal: false
     };
     this.getSessionRecords = this.getSessionRecords.bind(this);
     this.addNewTime = this.addNewTime.bind(this);
     this.deleteTime = this.deleteTime.bind(this);
-    this.toggleResetModal = this.toggleResetModal.bind(this);
     this.resetSession = this.resetSession.bind(this);
+    this.toggleResetModal = this.toggleResetModal.bind(this);
+    this.toggleSubmitRecordModal = this.toggleSubmitRecordModal.bind(this);
   }
 
   getSessionRecords(sessionTimes) {
@@ -76,17 +78,23 @@ export default class TimerPage extends React.Component {
     });
   }
 
+  resetSession() {
+    this.setState({
+      sessionTimes: [],
+      sessionRecords: null,
+      showResetModal: false
+    });
+  }
+
   toggleResetModal() {
     this.setState({
       showResetModal: !this.state.showResetModal
     });
   }
 
-  resetSession() {
+  toggleSubmitRecordModal() {
     this.setState({
-      sessionTimes: [],
-      sessionRecords: null,
-      showResetModal: false
+      showSaveRecordModal: !this.state.showSaveRecordModal
     });
   }
 
@@ -122,7 +130,7 @@ export default class TimerPage extends React.Component {
             </Row>
             <Row>
               {this.context.user && <Col lg className="mt-3">
-                <Button className="std-button" block>Save Record</Button>
+                <Button onClick={this.toggleSubmitRecordModal} className="std-button" block>Save Record</Button>
               </Col>}
               <Col lg className="mt-3">
                 <Button onClick={this.toggleResetModal} className="std-button" variant="danger" block>Reset Session</Button>
@@ -137,7 +145,7 @@ export default class TimerPage extends React.Component {
             <Button onClick={this.resetSession} variant="primary">Reset Session</Button>
           </Modal.Footer>
         </Modal>
-        <SaveRecordModal sessionRecords={this.state.sessionRecords} />
+        {this.state.showSaveRecordModal && <SaveRecordModal sessionRecords={this.state.sessionRecords} />}
       </>
     );
   }
