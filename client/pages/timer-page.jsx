@@ -12,8 +12,7 @@ export default class TimerPage extends React.Component {
     super(props);
     this.state = {
       sessionTimes: [],
-      bestSingle: null,
-      bestAverage3Of5: null,
+      sessionRecords: null,
       showResetModal: false
     };
     this.getSessionRecords = this.getSessionRecords.bind(this);
@@ -23,18 +22,22 @@ export default class TimerPage extends React.Component {
     this.resetSession = this.resetSession.bind(this);
   }
 
-  getSessionRecords() {
-    const result = {};
-    result.bestSingle = [this.state.sessionTimes.length > 0 ? Math.min(...this.state.sessionTimes) : null];
+  getSessionRecords(sessionTimes) {
+    if (sessionTimes.length === 0) {
+      return null;
+    }
 
-    let bestAvg;
-    let bestStartingIndex = 0;
-    if (this.state.sessionTimes.length < 5) {
-      bestAvg = null;
-      bestStartingIndex = null;
+    const result = {};
+    result.bestSingle = [sessionTimes.length > 0 ? Math.min(...sessionTimes) : null];
+
+    if (sessionTimes.length < 5) {
+      result.bestAvg3Of5 = null;
+      result.bestAvg3Of5Arr = null;
     } else {
-      for (let i = 0; i < this.state.sessionTimes.length - 4; i++) {
-        const sortedSet = this.state.sessionTimes.slice(i, i + 5).sort((a, b) => a - b);
+      let bestAvg;
+      let bestStartingIndex = 0;
+      for (let i = 0; i < sessionTimes.length - 4; i++) {
+        const sortedSet = sessionTimes.slice(i, i + 5).sort((a, b) => a - b);
         const setOf3 = sortedSet.slice(1, 4);
         const avg = setOf3.reduce((acc, cur) => acc + cur) / 3;
         if (bestAvg) {
@@ -46,26 +49,29 @@ export default class TimerPage extends React.Component {
           bestAvg = avg;
         }
       }
+      result.bestAvg3Of5 = [bestAvg];
+      result.bestAvg3Of5Arr = sessionTimes.slice(bestStartingIndex, bestStartingIndex + 5);
     }
-
-    result.bestAvg3Of5 = bestAvg;
-    result.bestAvg3Of5Arr = this.state.sessionTimes.slice(bestStartingIndex, bestStartingIndex + 5);
 
     return result;
   }
 
   addNewTime(time) {
     const sessionTimes = this.state.sessionTimes.concat(time);
+    const sessionRecords = this.getSessionRecords(sessionTimes);
     this.setState({
-      sessionTimes
+      sessionTimes,
+      sessionRecords
     });
   }
 
   deleteTime(index) {
-    const newSessionTimes = this.state.sessionTimes.slice();
-    newSessionTimes.splice(index, 1);
+    const sessionTimes = this.state.sessionTimes.slice();
+    sessionTimes.splice(index, 1);
+    const sessionRecords = this.getSessionRecords(sessionTimes);
     this.setState({
-      sessionTimes: newSessionTimes
+      sessionTimes,
+      sessionRecords
     });
   }
 
@@ -78,6 +84,7 @@ export default class TimerPage extends React.Component {
   resetSession() {
     this.setState({
       sessionTimes: [],
+      sessionRecords: null,
       showResetModal: false
     });
   }
