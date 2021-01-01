@@ -83,6 +83,10 @@ app.post('/api/auth/log-in', (req, res, next) => {
 
 app.use(authorizationMiddleware);
 
+app.post('/api/new-record', (req, res, next) => {
+
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
