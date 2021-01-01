@@ -1,5 +1,6 @@
 require('dotenv/config');
 const pg = require('pg');
+const format = require('pg-format');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const authorizationMiddleware = require('./authorization-middleware');
@@ -97,7 +98,19 @@ app.post('/api/new-record', (req, res, next) => {
   `;
   const newRecordParams = [userId, puzzleTypeId, recordTypeId, recordDate];
   db.query(newRecordSql, newRecordParams)
-    .then();
+    .then(result => {
+      const [recordId] = result.rows;
+      const solvesArrValues = [];
+      for (let i = 0; i < solves.length; i++) {
+        solvesArrValues.push([recordId, solves[i]]);
+      }
+      const solvesSql = format(
+        `insert into "solves" ("recordId", "time")
+              values %L
+           returning "recordId";
+        `, solvesArrValues);
+      return db.query(solvesSql);
+    });
 });
 
 app.use(errorMiddleware);
