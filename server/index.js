@@ -84,6 +84,11 @@ app.post('/api/auth/log-in', (req, res, next) => {
 app.use(authorizationMiddleware);
 
 app.post('/api/new-record', (req, res, next) => {
+  const { userId } = req.user;
+  const { puzzleTypeId, recordTypeId, solves } = req.body;
+  if (!puzzleTypeId || !recordTypeId || !solves) {
+    throw new ClientError(400, 'puzzleTypeId, recordTypeId, and solves are required fields');
+  }
 
 });
 
