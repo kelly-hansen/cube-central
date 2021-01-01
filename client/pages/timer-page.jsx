@@ -5,6 +5,7 @@ import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import YellowSection from '../components/yellow-section';
 import SessionStats from '../components/session-stats';
 import SessionTimes from '../components/session-times';
+import SaveRecordModal from '../components/save-record-modal';
 import AppContext from '../lib/app-context';
 
 export default class TimerPage extends React.Component {
@@ -136,6 +137,7 @@ export default class TimerPage extends React.Component {
             <Button onClick={this.resetSession} variant="primary">Reset Session</Button>
           </Modal.Footer>
         </Modal>
+        <SaveRecordModal />
       </>
     );
   }
