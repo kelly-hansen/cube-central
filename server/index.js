@@ -89,7 +89,14 @@ app.post('/api/new-record', (req, res, next) => {
   if (!puzzleTypeId || !recordTypeId || !solves) {
     throw new ClientError(400, 'puzzleTypeId, recordTypeId, and solves are required fields');
   }
-
+  const recordDate = 'now()';
+  const newRecordSql = `
+  insert into "records" ("userId", "puzzleTypeId", "recordTypeId", "recordDate")
+       values ($1, $2, $3, $4)
+    returning "recordId";
+  `;
+  const newRecordParams = [userId, puzzleTypeId, recordTypeId, recordDate];
+  return db.query(newRecordSql, newRecordParams);
 });
 
 app.use(errorMiddleware);
