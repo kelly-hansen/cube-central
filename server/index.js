@@ -96,7 +96,8 @@ app.post('/api/new-record', (req, res, next) => {
     returning "recordId";
   `;
   const newRecordParams = [userId, puzzleTypeId, recordTypeId, recordDate];
-  return db.query(newRecordSql, newRecordParams);
+  db.query(newRecordSql, newRecordParams)
+    .then();
 });
 
 app.use(errorMiddleware);
