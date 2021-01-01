@@ -2,6 +2,7 @@ require('dotenv/config');
 const pg = require('pg');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
+const authorizationMiddleware = require('./authorization-middleware');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const argon2 = require('argon2');
@@ -79,6 +80,8 @@ app.post('/api/auth/log-in', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+app.use(authorizationMiddleware);
 
 app.use(errorMiddleware);
 
