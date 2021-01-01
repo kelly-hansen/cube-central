@@ -106,11 +106,15 @@ app.post('/api/new-record', (req, res, next) => {
       }
       const solvesSql = format(
         `insert into "solves" ("recordId", "time")
-              values %L
-           returning "recordId";
+              values %L;
         `, solvesArrValues);
       return db.query(solvesSql);
-    });
+    })
+    .then(result => {
+      const [recordId] = result.rows;
+      res.status(201).json(recordId);
+    })
+    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);
