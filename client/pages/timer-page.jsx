@@ -137,7 +137,7 @@ export default class TimerPage extends React.Component {
             <Button onClick={this.resetSession} variant="primary">Reset Session</Button>
           </Modal.Footer>
         </Modal>
-        <SaveRecordModal />
+        <SaveRecordModal sessionRecords={this.state.sessionRecords} />
       </>
     );
   }

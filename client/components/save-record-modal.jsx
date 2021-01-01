@@ -5,9 +5,23 @@ export default class SaveRecordModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      puzzle: null,
-      recordType: null
+      puzzle: '3x3x3 Cube',
+      recordType: 'Single'
     };
+    this.updatePuzzle = this.updatePuzzle.bind(this);
+    this.updateRecordType = this.updateRecordType.bind(this);
+  }
+
+  updatePuzzle(e) {
+    this.setState({
+      puzzle: e.target.value
+    });
+  }
+
+  updateRecordType(e) {
+    this.setState({
+      recordType: e.target.value
+    });
   }
 
   render() {
@@ -20,7 +34,7 @@ export default class SaveRecordModal extends React.Component {
           <Form>
             <Form.Group controlId="puzzle">
               <Form.Label>Puzzle</Form.Label>
-              <Form.Control as="select">
+              <Form.Control as="select" onChange={this.updatePuzzle}>
                 <option>3x3x3 Cube</option>
                 <option>2x2x2 Cube</option>
                 <option>4x4x4 Cube</option>
@@ -35,7 +49,7 @@ export default class SaveRecordModal extends React.Component {
             </Form.Group>
             <Form.Group controlId="record-type">
               <Form.Label>Record Type</Form.Label>
-              <Form.Control as="select">
+              <Form.Control as="select" onChange={this.updateRecordType}>
                 <option>Single</option>
                 <option>Average 3 of 5</option>
               </Form.Control>
