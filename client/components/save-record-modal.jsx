@@ -11,6 +11,7 @@ export default class SaveRecordModal extends React.Component {
     };
     this.updatePuzzle = this.updatePuzzle.bind(this);
     this.updateRecordType = this.updateRecordType.bind(this);
+    this.saveNewRecord = this.saveNewRecord.bind(this);
   }
 
   updatePuzzle(e) {
@@ -23,6 +24,10 @@ export default class SaveRecordModal extends React.Component {
     this.setState({
       recordType: e.target.value
     });
+  }
+
+  saveNewRecord(e) {
+    e.preventDefault();
   }
 
   render() {
