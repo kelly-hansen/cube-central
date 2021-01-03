@@ -28,6 +28,8 @@ export default class SaveRecordModal extends React.Component {
 
   saveNewRecord(e) {
     e.preventDefault();
+    const body = Object.assign({}, this.state);
+    body.solves = body.recordType === 'Single' ? this.props.sessionRecords.bestSingle : this.props.sessionRecords.bestAverage3Of5Arr;
   }
 
   render() {
@@ -55,7 +57,7 @@ export default class SaveRecordModal extends React.Component {
           <h5 className="mb-0">New Record</h5>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={this.saveNewRecord}>
             <Form.Group controlId="puzzle">
               <Form.Label>Puzzle</Form.Label>
               <Form.Control as="select" value={this.state.puzzle} onChange={this.updatePuzzle}>
