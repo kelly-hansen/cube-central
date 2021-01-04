@@ -22,7 +22,8 @@ export default class App extends React.Component {
     const { user, token } = result;
     window.localStorage.setItem('speed-cube-timer-jwt', token);
     this.setState({
-      user
+      user,
+      token
     });
     const url = new URL(window.location);
     url.hash = '#';
@@ -61,6 +62,7 @@ export default class App extends React.Component {
   render() {
     const contextValue = {
       user: this.state.user,
+      token: this.state.token,
       route: this.state.route,
       handleLogIn: this.handleLogIn,
       handleLogOut: this.handleLogOut

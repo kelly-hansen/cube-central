@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import getDisplayTime from '../lib/get-display-time';
+import AppContext from '../lib/app-context';
 
 export default class SaveRecordModal extends React.Component {
   constructor(props) {
@@ -30,6 +31,14 @@ export default class SaveRecordModal extends React.Component {
     e.preventDefault();
     const body = Object.assign({}, this.state);
     body.solves = body.recordType === 'Single' ? this.props.sessionRecords.bestSingle : this.props.sessionRecords.bestAverage3Of5Arr;
+    fetch('/api/new-record', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.context.token
+      },
+      body: JSON.stringify(body)
+    });
   }
 
   render() {
@@ -91,3 +100,5 @@ export default class SaveRecordModal extends React.Component {
     );
   }
 }
+
+SaveRecordModal.contextType = AppContext;
