@@ -112,7 +112,7 @@ app.post('/api/new-record', (req, res, next) => {
     })
     .then(result => {
       const [recordId] = result.rows;
-      res.status(201).json(recordId);
+      res.status(201).json({ recordId });
     })
     .catch(err => next(err));
 });
