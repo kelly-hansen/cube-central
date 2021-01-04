@@ -95,7 +95,7 @@ export default class SaveRecordModal extends React.Component {
       }
 
       modalContents = (
-        <Modal show={this.props.showModal} onHide={this.props.toggleSaveRecordModal}>
+        <>
           <Modal.Header>
             <h5 className="mb-0">New Record</h5>
           </Modal.Header>
@@ -130,7 +130,7 @@ export default class SaveRecordModal extends React.Component {
               </div>
             </Form>
           </Modal.Body>
-        </Modal>
+        </>
       );
     }
 
