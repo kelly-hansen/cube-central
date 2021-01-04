@@ -86,32 +86,33 @@ app.use(authorizationMiddleware);
 
 app.post('/api/new-record', (req, res, next) => {
   const { userId } = req.user;
-  const { puzzleTypeId, recordTypeId, solves } = req.body;
-  if (!puzzleTypeId || !recordTypeId || !solves) {
-    throw new ClientError(400, 'puzzleTypeId, recordTypeId, and solves are required fields');
+  const { puzzleType, recordType, solves } = req.body;
+  if (!puzzleType || !recordType || !solves) {
+    throw new ClientError(400, 'puzzleType, recordType, and solves are required fields');
   }
   const recordDate = 'now()';
   const newRecordSql = `
   insert into "records" ("userId", "puzzleTypeId", "recordTypeId", "recordDate")
-       values ($1, $2, $3, $4)
+       values ($1, (select "puzzleTypeId" from "puzzleTypes" where "label" = $2), (select "recordTypeId" from "recordTypes" where "label" = $3), $4)
     returning "recordId";
   `;
-  const newRecordParams = [userId, puzzleTypeId, recordTypeId, recordDate];
+  const newRecordParams = [userId, puzzleType, recordType, recordDate];
   db.query(newRecordSql, newRecordParams)
     .then(result => {
-      const [recordId] = result.rows;
+      const { recordId } = result.rows[0];
       const solvesArrValues = [];
       for (let i = 0; i < solves.length; i++) {
         solvesArrValues.push([recordId, solves[i]]);
       }
       const solvesSql = format(
         `insert into "solves" ("recordId", "time")
-              values %L;
+              values %L
+           returning "recordId";
         `, solvesArrValues);
       return db.query(solvesSql);
     })
     .then(result => {
-      const [recordId] = result.rows;
+      const { recordId } = result.rows[0];
       res.status(201).json({ recordId });
     })
     .catch(err => next(err));

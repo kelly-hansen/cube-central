@@ -7,7 +7,7 @@ export default class SaveRecordModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      puzzle: '3x3x3 Cube',
+      puzzleType: '3x3x3 Cube',
       recordType: 'Single',
       status: null
     };
@@ -19,7 +19,7 @@ export default class SaveRecordModal extends React.Component {
 
   updatePuzzle(e) {
     this.setState({
-      puzzle: e.target.value
+      puzzleType: e.target.value
     });
   }
 
@@ -56,10 +56,10 @@ export default class SaveRecordModal extends React.Component {
   }
 
   closeAndResetModal() {
+    this.props.toggleSaveRecordModal();
     this.setState({
       status: null
     });
-    this.props.toggleSaveRecordModal();
   }
 
   render() {
