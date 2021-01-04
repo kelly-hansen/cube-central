@@ -24,7 +24,8 @@ CREATE TABLE "records" (
 	"puzzleTypeId" int NOT NULL,
 	"recordTypeId" int NOT NULL,
 	"recordDate" timestamptz NOT NULL,
-	CONSTRAINT "records_pk" PRIMARY KEY ("recordId")
+	CONSTRAINT "records_pk" PRIMARY KEY ("recordId"),
+	UNIQUE ("userId", "puzzleTypeId", "recordTypeId")
 ) WITH (
   OIDS=FALSE
 );

@@ -93,8 +93,11 @@ app.post('/api/new-record', (req, res, next) => {
   const recordDate = 'now()';
   const newRecordSql = `
   insert into "records" ("userId", "puzzleTypeId", "recordTypeId", "recordDate")
-       values ($1, (select "puzzleTypeId" from "puzzleTypes" where "label" = $2), (select "recordTypeId" from "recordTypes" where "label" = $3), $4)
-    returning "recordId";
+  values ($1, (select "puzzleTypeId" from "puzzleTypes" where "label" = $2), (select "recordTypeId" from "recordTypes" where "label" = $3), $4)
+  on conflict ("userId", "puzzleTypeId", "recordTypeId")
+  do update
+        set "recordDate" = $4
+  returning "recordId";
   `;
   const newRecordParams = [userId, puzzleType, recordType, recordDate];
   db.query(newRecordSql, newRecordParams)
