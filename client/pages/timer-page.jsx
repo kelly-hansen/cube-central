@@ -5,32 +5,84 @@ import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import YellowSection from '../components/yellow-section';
 import SessionStats from '../components/session-stats';
 import SessionTimes from '../components/session-times';
+import SaveRecordModal from '../components/save-record-modal';
+import AppContext from '../lib/app-context';
 
 export default class TimerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sessionTimes: [],
-      showResetModal: false
+      sessionRecords: null,
+      showResetModal: false,
+      showSaveRecordModal: false
     };
+    this.getSessionRecords = this.getSessionRecords.bind(this);
     this.addNewTime = this.addNewTime.bind(this);
     this.deleteTime = this.deleteTime.bind(this);
-    this.toggleResetModal = this.toggleResetModal.bind(this);
     this.resetSession = this.resetSession.bind(this);
+    this.toggleResetModal = this.toggleResetModal.bind(this);
+    this.toggleSaveRecordModal = this.toggleSaveRecordModal.bind(this);
+  }
+
+  getSessionRecords(sessionTimes) {
+    if (sessionTimes.length === 0) {
+      return null;
+    }
+
+    const result = {};
+    result.bestSingle = [sessionTimes.length > 0 ? Math.min(...sessionTimes) : null];
+
+    if (sessionTimes.length < 5) {
+      result.bestAverage3Of5 = null;
+      result.bestAverage3Of5Arr = null;
+    } else {
+      let bestAvg;
+      let bestStartingIndex = 0;
+      for (let i = 0; i < sessionTimes.length - 4; i++) {
+        const sortedSet = sessionTimes.slice(i, i + 5).sort((a, b) => a - b);
+        const setOf3 = sortedSet.slice(1, 4);
+        const avg = setOf3.reduce((acc, cur) => acc + cur) / 3;
+        if (bestAvg) {
+          if (avg < bestAvg) {
+            bestAvg = avg;
+            bestStartingIndex = i;
+          }
+        } else {
+          bestAvg = avg;
+        }
+      }
+      result.bestAverage3Of5 = [bestAvg];
+      result.bestAverage3Of5Arr = sessionTimes.slice(bestStartingIndex, bestStartingIndex + 5);
+    }
+
+    return result;
   }
 
   addNewTime(time) {
     const sessionTimes = this.state.sessionTimes.concat(time);
+    const sessionRecords = this.getSessionRecords(sessionTimes);
     this.setState({
-      sessionTimes
+      sessionTimes,
+      sessionRecords
     });
   }
 
   deleteTime(index) {
-    const newSessionTimes = this.state.sessionTimes.slice();
-    newSessionTimes.splice(index, 1);
+    const sessionTimes = this.state.sessionTimes.slice();
+    sessionTimes.splice(index, 1);
+    const sessionRecords = this.getSessionRecords(sessionTimes);
     this.setState({
-      sessionTimes: newSessionTimes
+      sessionTimes,
+      sessionRecords
+    });
+  }
+
+  resetSession() {
+    this.setState({
+      sessionTimes: [],
+      sessionRecords: null,
+      showResetModal: false
     });
   }
 
@@ -40,10 +92,9 @@ export default class TimerPage extends React.Component {
     });
   }
 
-  resetSession() {
+  toggleSaveRecordModal() {
     this.setState({
-      sessionTimes: [],
-      showResetModal: false
+      showSaveRecordModal: !this.state.showSaveRecordModal
     });
   }
 
@@ -69,7 +120,7 @@ export default class TimerPage extends React.Component {
                 <p>Session</p>
               </Col>
             </Row>
-            <Row className="mb-5">
+            <Row className="mb-4">
               <Col sm className="d-flex justify-content-center mb-4">
                 <SessionStats sessionTimes={this.state.sessionTimes} />
               </Col>
@@ -78,7 +129,10 @@ export default class TimerPage extends React.Component {
               </Col>
             </Row>
             <Row>
-              <Col>
+              {this.context.user && <Col lg className="mt-3">
+                <Button onClick={this.toggleSaveRecordModal} className="std-button" block>Save Record</Button>
+              </Col>}
+              <Col lg className="mt-3">
                 <Button onClick={this.toggleResetModal} className="std-button" variant="danger" block>Reset Session</Button>
               </Col>
             </Row>
@@ -91,7 +145,14 @@ export default class TimerPage extends React.Component {
             <Button onClick={this.resetSession} variant="primary">Reset Session</Button>
           </Modal.Footer>
         </Modal>
+        <SaveRecordModal
+          sessionRecords={this.state.sessionRecords}
+          toggleSaveRecordModal={this.toggleSaveRecordModal}
+          showModal={this.state.showSaveRecordModal}
+        />
       </>
     );
   }
 }
+
+TimerPage.contextType = AppContext;
