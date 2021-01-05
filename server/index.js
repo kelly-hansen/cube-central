@@ -103,7 +103,17 @@ app.get('/api/records', (req, res, next) => {
   const params = [userId, puzzleType];
   db.query(sql, params)
     .then(result => {
-      console.log(result.rows);
+      const resultObj = {
+        bestSingle: [],
+        bestAverage3Of5Arr: []
+      };
+      for (let i = 0; i < result.rows.length; i++) {
+        if (result.rows[i].recordType === 'Single') {
+          resultObj.bestSingle.push(result.rows[i].time);
+        } else if (result.rows[i].recordType === 'Average 3 of 5') {
+          resultObj.bestAverage3Of5Arr.push(result.rows[i].time);
+        }
+      }
     })
     .catch(err => next(err));
 });
