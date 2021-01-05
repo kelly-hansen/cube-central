@@ -21,6 +21,37 @@ export default class MyRecords extends React.Component {
     });
   }
 
+  getAverageDisplayTimes(timesArr) {
+    const averageObj = {};
+    let max;
+    let maxIndex;
+    let min;
+    let minIndex;
+    for (let i = 0; i < timesArr.length; i++) {
+      if (!max || timesArr[i] > max) {
+        max = timesArr[i];
+        maxIndex = i;
+      }
+      if (!min || timesArr[i] < min) {
+        min = timesArr[i];
+        minIndex = i;
+      }
+    }
+    let sum = 0;
+    averageObj.displayTimes = [];
+    for (let i = 0; i < timesArr.length; i++) {
+      if (i !== maxIndex && i !== minIndex) {
+        sum += timesArr[i];
+        averageObj.displayTimes.push('(' + getDisplayTime(timesArr[i]) + ')');
+      } else {
+        averageObj.displayTimes.push(getDisplayTime(timesArr[i]));
+      }
+    }
+    averageObj.displayAverage = getDisplayTime(sum / 3);
+
+    return averageObj;
+  }
+
   render() {
     const averageTimes = this.state.records.bestAverage3Of5Arr
       ? (
