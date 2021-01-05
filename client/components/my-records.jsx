@@ -5,12 +5,19 @@ export default class MyRecords extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      puzzletype: '3x3x3 Cube',
+      puzzleType: '3x3x3 Cube',
       records: {
         bestSingle: null,
-        bestAverage3Of5Arr: 7
+        bestAverage3Of5Arr: null
       }
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      puzzleType: e.target.value
+    });
   }
 
   render() {
@@ -37,7 +44,11 @@ export default class MyRecords extends React.Component {
           <Col className="puzzle-selector  mb-2">
             <Form>
               <Form.Group controlId="puzzleType">
-                <Form.Control as="select">
+                <Form.Control
+                  as="select"
+                  value={this.state.puzzleType}
+                  onChange={this.handleChange}
+                >
                   <option>3x3x3 Cube</option>
                   <option>2x2x2 Cube</option>
                   <option>4x4x4 Cube</option>
