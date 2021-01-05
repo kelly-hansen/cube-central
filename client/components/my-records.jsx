@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
+import getDisplayTime from '../lib/get-display-time';
 
 export default class MyRecords extends React.Component {
   constructor(props) {
@@ -67,7 +68,11 @@ export default class MyRecords extends React.Component {
         <Row>
           <Col className="d-flex justify-content-center mb-3">
             <p className="stat-col my-0 mr-1 text-right">Single:</p>
-            <p className="stat-col my-0 ml-1 text-left">N/A</p>
+            <p className="stat-col my-0 ml-1 text-left">
+              {this.state.records.bestSingle
+                ? getDisplayTime(this.state.records.bestSingle[0])
+                : 'N/A'}
+            </p>
           </Col>
         </Row>
         <Row>
