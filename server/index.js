@@ -98,7 +98,7 @@ app.get('/api/records', (req, res, next) => {
   join "users" using ("userId")
   join "puzzleTypes" using ("puzzleTypeId")
   join "recordTypes" using ("recordTypeId")
-  where "userId" = $1 and "puzzleTypeId" = (select "puzzleTypeId" from "puzzleTypes" where "label" = $2)
+  where "userId" = $1 and "puzzleTypes"."label" = $2;
   `;
   const params = [userId, puzzleType];
   db.query(sql, params)
