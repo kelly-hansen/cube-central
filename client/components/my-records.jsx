@@ -53,17 +53,22 @@ export default class MyRecords extends React.Component {
   }
 
   render() {
-    const averageTimes = this.state.records.bestAverage3Of5Arr
-      ? (
-      <Row className="justify-content-center">
-        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
-        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
-        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
-        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
-        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
-      </Row>
-        )
-      : null;
+    let averageTime = 'N/A';
+    let averageTimesList = null;
+
+    if (this.state.records.bestAverage3Of5Arr) {
+      const averageObj = this.getAverageDisplayTimes(this.state.records.bestAverage3Of5Arr);
+      averageTime = averageObj.displayAverage;
+      averageTimesList = (
+        <Row className="justify-content-center">
+          {
+          averageObj.displayTimes.map((time, ind) => {
+            return <Col key={'time' + ind} sm md={2} lg={1} xl={1}>{time}</Col>;
+          })
+          }
+        </Row>
+      );
+    }
 
     return (
       <Container className="mb-4">
@@ -109,10 +114,10 @@ export default class MyRecords extends React.Component {
         <Row>
           <Col md className="d-flex justify-content-center mb-3">
             <p className="stat-col my-0 mr-1 text-right">Best Avg 3 Of 5:</p>
-            <p className="stat-col my-0 ml-1 text-left">N/A</p>
+            <p className="stat-col my-0 ml-1 text-left">{averageTime}</p>
           </Col>
         </Row>
-        {averageTimes}
+        {averageTimesList}
       </Container>
     );
   }
