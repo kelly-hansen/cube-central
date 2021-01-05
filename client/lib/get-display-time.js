@@ -9,7 +9,7 @@ export default function getDisplayTime(timeInput) {
   sec.length === 1 ? displayedSec = '0' + sec : displayedSec = sec;
   let displayedHundreths;
   hundreths.length === 1 ? displayedHundreths = '0' + hundreths : displayedHundreths = hundreths;
-  const displayedTime = `${min}:${displayedSec}.${displayedHundreths}`;
+  const displayedTime = `${min !== 0 ? min + ':' + displayedSec : sec}.${displayedHundreths}`;
 
   return displayedTime;
 }

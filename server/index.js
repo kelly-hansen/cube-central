@@ -84,6 +84,47 @@ app.post('/api/auth/log-in', (req, res, next) => {
 
 app.use(authorizationMiddleware);
 
+app.get('/api/records', (req, res, next) => {
+  const { userId } = req.user;
+  const puzzleType = req.headers['puzzle-type'];
+  if (!puzzleType) {
+    throw new ClientError(400, 'puzzleType is a required field');
+  }
+  const sql = `
+  select "time",
+         "recordTypes"."label" as "recordType"
+  from "solves"
+  join "records" using ("recordId")
+  join "users" using ("userId")
+  join "puzzleTypes" using ("puzzleTypeId")
+  join "recordTypes" using ("recordTypeId")
+  where "userId" = $1 and "puzzleTypes"."label" = $2;
+  `;
+  const params = [userId, puzzleType];
+  db.query(sql, params)
+    .then(result => {
+      const resultObj = {
+        bestSingle: [],
+        bestAverage3Of5Arr: []
+      };
+      for (let i = 0; i < result.rows.length; i++) {
+        if (result.rows[i].recordType === 'Single') {
+          resultObj.bestSingle.push(result.rows[i].time);
+        } else if (result.rows[i].recordType === 'Average 3 of 5') {
+          resultObj.bestAverage3Of5Arr.push(result.rows[i].time);
+        }
+      }
+      if (resultObj.bestSingle.length === 0) {
+        resultObj.bestSingle = null;
+      }
+      if (resultObj.bestAverage3Of5Arr.length === 0) {
+        resultObj.bestAverage3Of5Arr = null;
+      }
+      res.status(200).json(resultObj);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/new-record', (req, res, next) => {
   const { userId } = req.user;
   const { puzzleType, recordType, solves } = req.body;

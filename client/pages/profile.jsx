@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/header';
 import YellowSection from '../components/yellow-section';
+import MyRecords from '../components/my-records';
 import AppContext from '../lib/app-context';
 
 export default class Profile extends React.Component {
@@ -22,7 +23,9 @@ export default class Profile extends React.Component {
           <p className="mb-1">Member Since:</p>
           <p>{joinDate.toLocaleDateString()}</p>
         </div>
-        <YellowSection></YellowSection>
+        <YellowSection>
+          <MyRecords />
+        </YellowSection>
       </>
     );
   }
