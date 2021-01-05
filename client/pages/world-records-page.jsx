@@ -64,6 +64,7 @@ export default class WorldRecordsPage extends React.Component {
             </Table>
           </div>
         </div>
+        <p className="text-center mt-4">Last Updated: 1/5/2021</p>
       </>
     );
   }
