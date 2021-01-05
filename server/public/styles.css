@@ -109,6 +109,10 @@ body {
   height: 3rem;
 }
 
+.puzzle-selector {
+  max-width: 400px;
+}
+
 #root {
   min-height: 100vh;
 }
