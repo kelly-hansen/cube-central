@@ -63,13 +63,14 @@ export default class MyRecords extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
-      });
+        this.setState({
+          records: result
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
-    this.getRecords();
-
     let averageTime = 'N/A';
     let averageTimesList = null;
 
