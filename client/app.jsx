@@ -12,6 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       user: null,
+      token: null,
       route: parseRoute(window.location.hash)
     };
     this.handleLogIn = this.handleLogIn.bind(this);
@@ -45,7 +46,7 @@ export default class App extends React.Component {
     });
     const token = window.localStorage.getItem('speed-cube-timer-jwt');
     const user = token ? decodeToken(token) : null;
-    this.setState({ user });
+    this.setState({ user, token });
   }
 
   renderPage() {
