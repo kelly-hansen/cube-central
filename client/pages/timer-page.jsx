@@ -104,11 +104,8 @@ export default class TimerPage extends React.Component {
       <>
         <Header />
         <Container>
-          <Row>
-            <Col lg className="mb-3">
-              <Button className="std-button" block>Virtual Cube</Button>
-            </Col>
-            <Col lg>
+          <Row className="justify-content-center">
+            <Col md={8} lg={6} xl={5}>
               <Timer addNewTime={this.addNewTime} />
             </Col>
           </Row>
@@ -128,11 +125,11 @@ export default class TimerPage extends React.Component {
                 <SessionTimes sessionTimes={this.state.sessionTimes} deleteTime={this.deleteTime} />
               </Col>
             </Row>
-            <Row>
-              {this.context.user && <Col lg className="mt-3">
+            <Row className="justify-content-center">
+              {this.context.user && <Col md={8} lg className="mt-3">
                 <Button onClick={this.toggleSaveRecordModal} className="std-button" block>Save Record</Button>
               </Col>}
-              <Col lg className="mt-3">
+              <Col md={8} lg className="mt-3">
                 <Button onClick={this.toggleResetModal} className="std-button" variant="danger" block>Reset Session</Button>
               </Col>
             </Row>
