@@ -16,14 +16,12 @@ export default class MyRecords extends React.Component {
   render() {
     const averageTimes = this.state.records.bestAverage3Of5Arr
       ? (
-      <Row>
-        <Col className="d-flex justify-content-center">
-          <Col className="mx-2">0:35.53</Col>
-          <Col className="mx-2">0:35.53</Col>
-          <Col className="mx-2">0:35.53</Col>
-          <Col className="mx-2">0:35.53</Col>
-          <Col className="mx-2">0:35.53</Col>
-        </Col>
+      <Row className="justify-content-center">
+        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
+        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
+        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
+        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
+        <Col sm md={2} lg={1} xl={1}>0:35.53</Col>
       </Row>
         )
       : null;
