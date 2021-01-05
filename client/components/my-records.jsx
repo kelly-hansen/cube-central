@@ -14,12 +14,14 @@ export default class MyRecords extends React.Component {
       }
     };
     this.handleChange = this.handleChange.bind(this);
+    this.getRecords = this.getRecords.bind(this);
   }
 
   handleChange(e) {
     this.setState({
       puzzleType: e.target.value
     });
+    this.getRecords(e.target.value);
   }
 
   getAverageDisplayTimes(timesArr) {
@@ -53,12 +55,12 @@ export default class MyRecords extends React.Component {
     return averageObj;
   }
 
-  getRecords() {
+  getRecords(puzzleType) {
     fetch('/api/records', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': this.context.token,
-        'puzzle-type': this.state.puzzleType
+        'puzzle-type': puzzleType
       }
     })
       .then(res => res.json())
@@ -68,6 +70,10 @@ export default class MyRecords extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
+
+  componentDidMount() {
+    this.getRecords(this.state.puzzleType);
   }
 
   render() {
