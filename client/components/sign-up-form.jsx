@@ -46,6 +46,7 @@ export default class SignUpForm extends React.Component {
         this.setState({
           status
         });
+        e.target.reset();
       })
       .catch(err => console.error(err));
   }
