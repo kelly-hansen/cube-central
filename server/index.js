@@ -120,7 +120,7 @@ app.get('/api/records', (req, res, next) => {
       if (resultObj.bestAverage3Of5Arr.length === 0) {
         resultObj.bestAverage3Of5Arr = null;
       }
-
+      res.status(200).json(resultObj);
     })
     .catch(err => next(err));
 });
