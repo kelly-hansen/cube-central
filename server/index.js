@@ -108,10 +108,14 @@ app.post('/api/new-record', (req, res, next) => {
         solvesArrValues.push([recordId, solves[i]]);
       }
       const solvesSql = format(
-        `insert into "solves" ("recordId", "time")
-              values %L
-           returning "recordId";
-        `, solvesArrValues);
+        `
+        with "deleted" as (
+          delete from "solves" where "recordId" = %L
+        )
+        insert into "solves" ("recordId", "time")
+        values %L
+        returning "recordId";
+        `, recordId, solvesArrValues);
       return db.query(solvesSql);
     })
     .then(result => {
