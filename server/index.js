@@ -114,6 +114,13 @@ app.get('/api/records', (req, res, next) => {
           resultObj.bestAverage3Of5Arr.push(result.rows[i].time);
         }
       }
+      if (resultObj.bestSingle.length === 0) {
+        resultObj.bestSingle = null;
+      }
+      if (resultObj.bestAverage3Of5Arr.length === 0) {
+        resultObj.bestAverage3Of5Arr = null;
+      }
+
     })
     .catch(err => next(err));
 });
