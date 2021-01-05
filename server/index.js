@@ -86,11 +86,26 @@ app.use(authorizationMiddleware);
 
 app.get('/api/records', (req, res, next) => {
   const { userId } = req.user;
-  const { puzzleType } = req.body;
+  const puzzleType = req.headers['puzzle-type'];
   if (!puzzleType) {
     throw new ClientError(400, 'puzzleType is a required field');
   }
-
+  const sql = `
+  select "time",
+         "recordTypes"."label" as "recordType"
+  from "solves"
+  join "records" using ("recordId")
+  join "users" using ("userId")
+  join "puzzleTypes" using ("puzzleTypeId")
+  join "recordTypes" using ("recordTypeId")
+  where "userId" = $1 and "puzzleTypeId" = (select "puzzleTypeId" from "puzzleTypes" where "label" = $2)
+  `;
+  const params = [userId, puzzleType];
+  db.query(sql, params)
+    .then(result => {
+      console.log(result.rows);
+    })
+    .catch(err => next(err));
 });
 
 app.post('/api/new-record', (req, res, next) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import getDisplayTime from '../lib/get-display-time';
+import AppContext from '../lib/app-context';
 
 export default class MyRecords extends React.Component {
   constructor(props) {
@@ -52,7 +53,23 @@ export default class MyRecords extends React.Component {
     return averageObj;
   }
 
+  getRecords() {
+    fetch('/api/records', {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': this.context.token,
+        'puzzle-type': this.state.puzzleType
+      }
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+      });
+  }
+
   render() {
+    this.getRecords();
+
     let averageTime = 'N/A';
     let averageTimesList = null;
 
@@ -122,3 +139,5 @@ export default class MyRecords extends React.Component {
     );
   }
 }
+
+MyRecords.contextType = AppContext;
