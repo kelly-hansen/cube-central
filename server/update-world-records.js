@@ -19,17 +19,34 @@ fs.readFile('./wcadata.html', 'utf8', (err, data) => {
   const $ = cheerio.load(data);
 
   const puzzleTypes = $('h2 > a', '#results-list');
-  const puzzleTypesArr = puzzleTypes.map((i, el) => {
+  const puzzles = puzzleTypes.map((i, el) => {
     return $(el).text().trim();
   }).get();
 
   const tableBodys = $('tbody', '#results-list');
-  const tablesArr = tableBodys.map((i, el) => {
+  const rows = tableBodys.map((i, el) => {
     return [$(el).children('tr').map((i, el) => {
       return [$(el).children('td').map((i, el) => {
         return $(el).text().trim();
       }).get()];
     }).get()];
   }).get();
-  console.log(tablesArr);
+
+  const records = [];
+  for (let i = 0; i < puzzles.length; i++) {
+
+    records.push({
+      puzzle: puzzles[i],
+      rows: []
+    });
+
+    for (let j = 0; j < rows[i].length; j++) {
+      records[i].rows.push({
+        type: rows[i][j][0],
+        name: rows[i][j][1],
+        result: rows[i][j][2]
+      });
+    }
+  }
+
 });
