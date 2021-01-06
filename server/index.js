@@ -21,6 +21,19 @@ const jsonMiddleware = express.json();
 
 app.use(jsonMiddleware);
 
+app.get('/api/world-records', (req, res, next) => {
+  const sql = `
+    select *
+    from "worldRecordsData"
+    `;
+  db.query(sql)
+    .then(result => {
+      const [recordsData] = result.rows;
+      res.status(200).json(recordsData);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
