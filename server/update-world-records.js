@@ -14,14 +14,20 @@ fetch('https://www.worldcubeassociation.org/results/records')
 
 const fs = require('fs');
 
-let wcaData;
 fs.readFile('./wcadata.html', 'utf8', (err, data) => {
   if (err) throw err;
-  wcaData = data;
-  const $ = cheerio.load(wcaData);
+  const $ = cheerio.load(data);
+
   const puzzleTypes = $('h2 > a', '#results-list');
   const puzzleTypesArr = puzzleTypes.map((i, el) => {
     return $(el).text().trim();
   }).get();
-  console.log(puzzleTypesArr);
+
+  const tableBodys = $('tbody', '#results-list');
+  const tablesArr = tableBodys.map((i, el) => {
+    return $(el).children('tr').map((i, el) => {
+      return $(el).children('td').text();
+    }).get();
+  }).get();
+  console.log(tablesArr);
 });
