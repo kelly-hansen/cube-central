@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/header';
 import { Table, Spinner } from 'react-bootstrap';
+import YellowSection from '../components/yellow-section';
 
 export default class WorldRecordsPage extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ export default class WorldRecordsPage extends React.Component {
     fetch('/api/world-records')
       .then(res => res.json())
       .then(result => {
-        console.log(result.recordsData);
         if (result.recordsData) {
           this.setState({
             dateUpdated: result.dateUpdated,
@@ -41,53 +41,41 @@ export default class WorldRecordsPage extends React.Component {
         <p className="text-center">Unable to retrieve records data at this time. Please try again later.</p>
       );
     } else {
+      const recordsData = this.state.recordsData;
       contents = (
         <div className="world-records-cont">
-            <h5 className="ml-1">3x3x3 Cube</h5>
-            <Table striped size="sm" className="mb-4">
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <th>Name</th>
-                  <th>Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Single</td>
-                  <td>Yusheng Du</td>
-                  <td>3.47</td>
-                </tr>
-                <tr>
-                  <td>Average</td>
-                  <td>Feliks Zemdegs</td>
-                  <td>5.53</td>
-                </tr>
-              </tbody>
-            </Table>
-            <h5 className="ml-1">3x3x3 Cube</h5>
-            <Table striped size="sm">
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <th>Name</th>
-                  <th>Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Single</td>
-                  <td>Yusheng Du</td>
-                  <td>3.47</td>
-                </tr>
-                <tr>
-                  <td>Average</td>
-                  <td>Feliks Zemdegs</td>
-                  <td>5.53</td>
-                </tr>
-              </tbody>
-            </Table>
-          </div>
+          {
+            recordsData.map((puzzle, puzzleInd) => {
+              return (
+                <div key={'puzzle' + puzzleInd}>
+                  <h5 className="ml-1">{puzzle.puzzle}</h5>
+                  <Table striped size="sm" className="mb-4">
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Result</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        puzzle.rows.map((row, rowInd) => {
+                          return (
+                            <tr key={`puzzle ${puzzleInd} row ${rowInd}`}>
+                              <td>{row.type}</td>
+                              <td>{row.name}</td>
+                              <td>{row.result}</td>
+                            </tr>
+                          );
+                        })
+                      }
+                    </tbody>
+                  </Table>
+                </div>
+              );
+            })
+          }
+        </div>
       );
     }
 
@@ -99,7 +87,9 @@ export default class WorldRecordsPage extends React.Component {
         <div className="d-flex justify-content-center">
           {contents}
         </div>
-        {this.state.dateUpdated && <p className="text-center mt-4">Last Updated: 1/5/2021</p>}
+        <YellowSection>
+          {this.state.dateUpdated && <p className="text-center mt-4">Last Updated: 1/5/2021</p>}
+        </YellowSection>
       </>
     );
   }
