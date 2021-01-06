@@ -28,8 +28,8 @@ app.get('/api/world-records', (req, res, next) => {
     `;
   db.query(sql)
     .then(result => {
-      const [recordsData] = result.rows;
-      res.status(200).json(recordsData);
+      const [resultObj] = result.rows;
+      res.status(200).json(resultObj);
     })
     .catch(err => next(err));
 });

@@ -10,6 +10,14 @@ export default class WorldRecordsPage extends React.Component {
     };
   }
 
+  componentDidMount() {
+    fetch('/api/world-records')
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+      });
+  }
+
   render() {
     return (
       <>

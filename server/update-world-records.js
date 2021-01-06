@@ -58,7 +58,7 @@ fs.readFile('./server/wcadata.html', 'utf8', (err, data) => {
     with "deleted" as (
       delete from "worldRecordsData" *
     )
-    insert into "worldRecordsData" ("json", "dateUpdated")
+    insert into "worldRecordsData" ("recordsData", "dateUpdated")
     values ($1, $2);
     `;
   const params = [recordsJson, dateUpdated];
