@@ -45,7 +45,8 @@ export default class LogInForm extends React.Component {
             status: result.error
           });
         }
-      });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
