@@ -38,7 +38,7 @@ export default class WorldRecordsPage extends React.Component {
       );
     } else if (this.state.recordsData === 'error') {
       contents = (
-        <p>Unable to retrieve records data at this time. Please try again later.</p>
+        <p className="text-center">Unable to retrieve records data at this time. Please try again later.</p>
       );
     } else {
       contents = (
