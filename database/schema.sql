@@ -65,7 +65,7 @@ CREATE TABLE "solves" (
 
 CREATE TABLE "worldRecordsData" (
 	"json" json NOT NULL,
-	"dateUpdated" timestampz NOT NULL
+	"dateUpdated" timestamptz NOT NULL
 ) WITH (
 	OIDS=FALSE
 );
