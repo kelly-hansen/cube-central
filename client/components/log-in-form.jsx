@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import AppContext from '../lib/app-context';
 
 export default class LogInForm extends React.Component {
@@ -29,6 +29,9 @@ export default class LogInForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({
+      status: 'pending'
+    });
     fetch('/api/auth/log-in', {
       method: 'POST',
       headers: {
@@ -84,7 +87,13 @@ export default class LogInForm extends React.Component {
                 Log In
               </Button>
             </Form>
-            <p className="mt-3 mb-0">{this.state.status}</p>
+            <div className="mt-3 mb-0">
+              {
+                this.state.status === 'pending'
+                  ? <Spinner animation="border" variant="primary" />
+                  : this.state.status
+              }
+            </div>
           </Col>
         </Row>
       </Container>
