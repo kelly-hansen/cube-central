@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form, Spinner } from 'react-bootstrap';
 import getDisplayTime from '../lib/get-display-time';
 import AppContext from '../lib/app-context';
 
@@ -11,7 +11,8 @@ export default class MyRecords extends React.Component {
       records: {
         bestSingle: null,
         bestAverage3Of5Arr: null
-      }
+      },
+      status: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.getRecords = this.getRecords.bind(this);
@@ -56,6 +57,9 @@ export default class MyRecords extends React.Component {
   }
 
   getRecords(puzzleType) {
+    this.setState({
+      status: 'pending'
+    });
     fetch('/api/records', {
       headers: {
         'Content-Type': 'application/json',
@@ -66,10 +70,16 @@ export default class MyRecords extends React.Component {
       .then(res => res.json())
       .then(result => {
         this.setState({
-          records: result
+          records: result,
+          status: null
         });
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.setState({
+          status: 'error'
+        });
+      });
   }
 
   componentDidMount() {
@@ -91,6 +101,36 @@ export default class MyRecords extends React.Component {
           })
           }
         </Row>
+      );
+    }
+
+    let contents;
+    if (this.state.status === 'pending') {
+      contents = <Spinner animation="border" variant="primary" />;
+    } else if (this.state.status === '') {
+      contents = false;
+    } else if (this.state.status === 'error') {
+      contents = <p>Unable to retrieve records data at this time. Please try again later.</p>;
+    } else {
+      contents = (
+        <>
+          <Row>
+            <Col className="d-flex justify-content-center mb-3">
+              <p className="stat-col my-0 mr-1 text-right">Single:</p>
+              <p className="stat-col my-0 ml-1 text-left">
+                {this.state.records.bestSingle
+                  ? getDisplayTime(this.state.records.bestSingle[0])
+                  : 'N/A'}
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col md className="d-flex justify-content-center mb-3">
+              <p className="stat-col my-0 mr-1 text-right">Best Avg 3 Of 5:</p>
+              <p className="stat-col my-0 ml-1 text-left">{averageTime}</p>
+            </Col>
+          </Row>
+        </>
       );
     }
 
@@ -125,22 +165,7 @@ export default class MyRecords extends React.Component {
             </Form>
           </Col>
         </Row>
-        <Row>
-          <Col className="d-flex justify-content-center mb-3">
-            <p className="stat-col my-0 mr-1 text-right">Single:</p>
-            <p className="stat-col my-0 ml-1 text-left">
-              {this.state.records.bestSingle
-                ? getDisplayTime(this.state.records.bestSingle[0])
-                : 'N/A'}
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col md className="d-flex justify-content-center mb-3">
-            <p className="stat-col my-0 mr-1 text-right">Best Avg 3 Of 5:</p>
-            <p className="stat-col my-0 ml-1 text-left">{averageTime}</p>
-          </Col>
-        </Row>
+        {contents}
         {averageTimesList}
       </Container>
     );
