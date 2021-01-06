@@ -52,7 +52,8 @@ export default class SaveRecordModal extends React.Component {
             status: result.error
           });
         }
-      });
+      })
+      .catch(err => console.error(err));
   }
 
   closeAndResetModal() {
