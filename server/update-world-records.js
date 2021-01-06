@@ -25,9 +25,11 @@ fs.readFile('./wcadata.html', 'utf8', (err, data) => {
 
   const tableBodys = $('tbody', '#results-list');
   const tablesArr = tableBodys.map((i, el) => {
-    return $(el).children('tr').map((i, el) => {
-      return $(el).children('td').text();
-    }).get();
+    return [$(el).children('tr').map((i, el) => {
+      return [$(el).children('td').map((i, el) => {
+        return $(el).text().trim();
+      }).get()];
+    }).get()];
   }).get();
   console.log(tablesArr);
 });
