@@ -144,7 +144,7 @@ export default class SaveRecordModal extends React.Component {
     }
 
     return (
-      <Modal show={this.props.showModal} onHide={this.props.toggleSaveRecordModal}>
+      <Modal show={this.props.showModal} onHide={this.closeAndResetModal}>
         {modalContents}
       </Modal>
     );
