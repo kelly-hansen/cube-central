@@ -6,7 +6,8 @@ export default class WorldRecordsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      records: null
+      dateUpdated: null,
+      recordsData: null
     };
   }
 
@@ -14,8 +15,13 @@ export default class WorldRecordsPage extends React.Component {
     fetch('/api/world-records')
       .then(res => res.json())
       .then(result => {
-        console.log(result);
-      });
+        console.log(result.recordsData);
+        this.setState({
+          dateUpdated: result.dateUpdated,
+          recordsData: result.recordsData
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
