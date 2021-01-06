@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
-import { Table } from 'react-bootstrap';
+import { Table, Spinner } from 'react-bootstrap';
 
 export default class WorldRecordsPage extends React.Component {
   constructor(props) {
@@ -16,22 +16,33 @@ export default class WorldRecordsPage extends React.Component {
       .then(res => res.json())
       .then(result => {
         console.log(result.recordsData);
-        this.setState({
-          dateUpdated: result.dateUpdated,
-          recordsData: result.recordsData
-        });
+        if (result.recordsData) {
+          this.setState({
+            dateUpdated: result.dateUpdated,
+            recordsData: result.recordsData
+          });
+        } else {
+          this.setState({
+            recordsData: 'error'
+          });
+        }
       })
       .catch(err => console.error(err));
   }
 
   render() {
-    return (
-      <>
-        <Header />
-        <h5 className="text-center">World Records</h5>
-        <p className="text-center font-weight-bold mb-4">via World Cube Association (WCA)</p>
-        <div className="d-flex justify-content-center">
-          <div className="world-records-cont">
+    let contents;
+    if (this.state.recordsData === null) {
+      contents = (
+        <Spinner animation="border" variant="primary" />
+      );
+    } else if (this.state.recordsData === 'error') {
+      contents = (
+        <p>Unable to retrieve records data at this time. Please try again later.</p>
+      );
+    } else {
+      contents = (
+        <div className="world-records-cont">
             <h5 className="ml-1">3x3x3 Cube</h5>
             <Table striped size="sm" className="mb-4">
               <thead>
@@ -77,8 +88,18 @@ export default class WorldRecordsPage extends React.Component {
               </tbody>
             </Table>
           </div>
+      );
+    }
+
+    return (
+      <>
+        <Header />
+        <h5 className="text-center">World Records</h5>
+        <p className="text-center font-weight-bold mb-4">via World Cube Association (WCA)</p>
+        <div className="d-flex justify-content-center">
+          {contents}
         </div>
-        <p className="text-center mt-4">Last Updated: 1/5/2021</p>
+        {this.state.dateUpdated && <p className="text-center mt-4">Last Updated: 1/5/2021</p>}
       </>
     );
   }
