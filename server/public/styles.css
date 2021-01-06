@@ -119,6 +119,14 @@ body {
   font-size: 0.85rem;
 }
 
+.table-col-25 {
+  width: 25%;
+}
+
+.table-col-50 {
+  width: 50%;
+}
+
 #root {
   min-height: 100vh;
 }

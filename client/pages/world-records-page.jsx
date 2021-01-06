@@ -52,9 +52,9 @@ export default class WorldRecordsPage extends React.Component {
                   <Table striped size="sm" className="mb-4">
                     <thead>
                       <tr>
-                        <th>Type</th>
-                        <th>Name</th>
-                        <th>Result</th>
+                        <th className="table-col-25">Type</th>
+                        <th className="table-col-50">Name</th>
+                        <th className="table-col-25">Result</th>
                       </tr>
                     </thead>
                     <tbody>
