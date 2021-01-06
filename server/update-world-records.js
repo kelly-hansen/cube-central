@@ -49,4 +49,15 @@ fs.readFile('./wcadata.html', 'utf8', (err, data) => {
     }
   }
 
+  const recordsJson = JSON.stringify(records);
+  const dateUpdated = 'now()';
+  const sql = `
+    with "deleted" as (
+      delete from "worldRecordsData" *
+    )
+    insert into "worldRecordsData" ("json", "dateUpdated")
+    values ($1, $2);
+    `;
+  const params = [recordsJson, dateUpdated];
+
 });
