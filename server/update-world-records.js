@@ -1,5 +1,10 @@
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
+const pg = require('pg');
+
+const db = new pg.Pool({
+  connectionString: process.env.DATABASE_URL
+});
 
 /*
 fetch('https://www.worldcubeassociation.org/results/records')
@@ -59,5 +64,6 @@ fs.readFile('./wcadata.html', 'utf8', (err, data) => {
     values ($1, $2);
     `;
   const params = [recordsJson, dateUpdated];
-
+  db.query(sql, params)
+    .catch(err => console.error(err));
 });
