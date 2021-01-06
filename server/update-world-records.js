@@ -1,3 +1,4 @@
+require('dotenv/config');
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const pg = require('pg');
@@ -11,15 +12,12 @@ fetch('https://www.worldcubeassociation.org/results/records')
   .then(res => res.text())
   .then(body => {
     const $ = cheerio.load(body);
-    const puzzle = $('#results-list a:first').text();
-    const trimmedPuzzle = puzzle.trim();
-    console.log(trimmedPuzzle);
   });
 */
 
 const fs = require('fs');
 
-fs.readFile('./wcadata.html', 'utf8', (err, data) => {
+fs.readFile('./server/wcadata.html', 'utf8', (err, data) => {
   if (err) throw err;
   const $ = cheerio.load(data);
 
