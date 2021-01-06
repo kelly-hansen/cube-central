@@ -88,7 +88,7 @@ export default class WorldRecordsPage extends React.Component {
           {contents}
         </div>
         <YellowSection>
-          {this.state.dateUpdated && <p className="text-center mt-4">Last Updated: 1/5/2021</p>}
+          {this.state.dateUpdated && <p className="text-center mt-4">{`Last Updated: ${new Date(this.state.dateUpdated).toLocaleDateString()}`}</p>}
         </YellowSection>
       </>
     );
