@@ -45,9 +45,9 @@ export default class MyRecords extends React.Component {
     for (let i = 0; i < timesArr.length; i++) {
       if (i !== maxIndex && i !== minIndex) {
         sum += timesArr[i];
-        averageObj.displayTimes.push('(' + getDisplayTime(timesArr[i]) + ')');
-      } else {
         averageObj.displayTimes.push(getDisplayTime(timesArr[i]));
+      } else {
+        averageObj.displayTimes.push('(' + getDisplayTime(timesArr[i]) + ')');
       }
     }
     averageObj.displayAverage = getDisplayTime(sum / 3);
