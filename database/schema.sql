@@ -63,6 +63,15 @@ CREATE TABLE "solves" (
 
 
 
+CREATE TABLE "worldRecordsData" (
+	"recordsData" json NOT NULL,
+	"dateUpdated" timestamptz NOT NULL
+) WITH (
+	OIDS=FALSE
+);
+
+
+
 
 ALTER TABLE "records" ADD CONSTRAINT "records_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 ALTER TABLE "records" ADD CONSTRAINT "records_fk1" FOREIGN KEY ("puzzleTypeId") REFERENCES "puzzleTypes"("puzzleTypeId");

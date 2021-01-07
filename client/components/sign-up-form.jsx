@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 
 export default class SignUpForm extends React.Component {
   constructor(props) {
@@ -28,6 +28,9 @@ export default class SignUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({
+      status: 'pending'
+    });
     fetch('/api/auth/sign-up', {
       method: 'POST',
       headers: {
@@ -89,7 +92,13 @@ export default class SignUpForm extends React.Component {
                 Sign Up
               </Button>
             </Form>
-            <p className="mt-3 mb-0">{this.state.status}</p>
+            <div className="mt-3 mb-0">
+              {
+                this.state.status === 'pending'
+                  ? <Spinner animation="border" variant="primary" />
+                  : this.state.status
+              }
+            </div>
           </Col>
         </Row>
       </Container>

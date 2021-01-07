@@ -113,6 +113,20 @@ body {
   max-width: 400px;
 }
 
+.world-records-cont {
+  width: 100%;
+  max-width: 1000px;
+  font-size: 0.85rem;
+}
+
+.table-col-25 {
+  width: 25%;
+}
+
+.table-col-50 {
+  width: 50%;
+}
+
 #root {
   min-height: 100vh;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form, Button, Spinner } from 'react-bootstrap';
 import getDisplayTime from '../lib/get-display-time';
 import AppContext from '../lib/app-context';
 
@@ -31,6 +31,9 @@ export default class SaveRecordModal extends React.Component {
 
   saveNewRecord(e) {
     e.preventDefault();
+    this.setState({
+      status: 'pending'
+    });
     const body = Object.assign({}, this.state);
     body.solves = body.recordType === 'Single' ? this.props.sessionRecords.bestSingle : this.props.sessionRecords.bestAverage3Of5Arr;
     fetch('/api/new-record', {
@@ -43,15 +46,15 @@ export default class SaveRecordModal extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.recordId) {
-          this.setState({
-            status: 'Record saved!'
-          });
-        } else {
-          this.setState({
-            status: result.error
-          });
-        }
+        this.setState({
+          status: 'Record saved!'
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        this.setState({
+          status: 'Unable to process request at this time.'
+        });
       });
   }
 
@@ -64,7 +67,13 @@ export default class SaveRecordModal extends React.Component {
 
   render() {
     let modalContents;
-    if (this.state.status !== null) {
+    if (this.state.status === 'pending') {
+      modalContents = (
+        <Modal.Body className="d-flex justify-content-center">
+          <Spinner animation="border" variant="primary" />
+        </Modal.Body>
+      );
+    } else if (this.state.status !== null) {
       modalContents = (
         <>
           <Modal.Body>
@@ -135,7 +144,7 @@ export default class SaveRecordModal extends React.Component {
     }
 
     return (
-      <Modal show={this.props.showModal} onHide={this.props.toggleSaveRecordModal}>
+      <Modal show={this.props.showModal} onHide={this.closeAndResetModal}>
         {modalContents}
       </Modal>
     );
