@@ -10,6 +10,7 @@ export default class Timer extends React.Component {
     };
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
+    this.spaceListener = this.spaceListener.bind(this);
   }
 
   startTimer() {
@@ -36,6 +37,23 @@ export default class Timer extends React.Component {
       running: false,
       elapsed
     });
+  }
+
+  spaceListener(e) {
+    if (e.code === 'Space') {
+      !this.state.running ? this.startTimer() : this.stopTimer();
+      if (e.target === document.body) {
+        e.preventDefault();
+      }
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.spaceListener);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.spaceListener);
   }
 
   render() {

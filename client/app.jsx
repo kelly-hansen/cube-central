@@ -40,6 +40,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     window.addEventListener('hashchange', () => {
       this.setState({
         route: parseRoute(window.location.hash)
