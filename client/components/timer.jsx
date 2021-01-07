@@ -38,6 +38,17 @@ export default class Timer extends React.Component {
     });
   }
 
+  componentDidMount() {
+    window.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        !this.state.running ? this.startTimer() : this.stopTimer();
+        if (e.target === document.body) {
+          e.preventDefault();
+        }
+      }
+    });
+  }
+
   render() {
     const displayedTime = getDisplayTime(this.state.elapsed);
     let timerStatusClass;
