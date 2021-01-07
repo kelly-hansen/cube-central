@@ -40,6 +40,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     window.addEventListener('hashchange', () => {
       this.setState({
         route: parseRoute(window.location.hash)
@@ -64,7 +65,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    window.scrollTo(0, 0);
     const contextValue = {
       user: this.state.user,
       token: this.state.token,
