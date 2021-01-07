@@ -64,6 +64,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    window.scrollTo(0, 0);
     const contextValue = {
       user: this.state.user,
       token: this.state.token,
