@@ -7,6 +7,7 @@ import SessionStats from '../components/session-stats';
 import SessionTimes from '../components/session-times';
 import SaveRecordModal from '../components/save-record-modal';
 import AppContext from '../lib/app-context';
+import VirtualCube from '../components/virtual-cube';
 
 export default class TimerPage extends React.Component {
   constructor(props) {
@@ -15,7 +16,11 @@ export default class TimerPage extends React.Component {
       sessionTimes: [],
       sessionRecords: null,
       showResetModal: false,
-      showSaveRecordModal: false
+      showSaveRecordModal: false,
+      virtualCube: {
+        active: false,
+        type: 'RubiksCube'
+      }
     };
     this.getSessionRecords = this.getSessionRecords.bind(this);
     this.addNewTime = this.addNewTime.bind(this);
@@ -23,6 +28,8 @@ export default class TimerPage extends React.Component {
     this.resetSession = this.resetSession.bind(this);
     this.toggleResetModal = this.toggleResetModal.bind(this);
     this.toggleSaveRecordModal = this.toggleSaveRecordModal.bind(this);
+    this.toggleVirtualCube = this.toggleVirtualCube.bind(this);
+    this.changeCubeType = this.changeCubeType.bind(this);
   }
 
   getSessionRecords(sessionTimes) {
@@ -98,12 +105,51 @@ export default class TimerPage extends React.Component {
     });
   }
 
+  toggleVirtualCube() {
+    this.setState({
+      virtualCube: {
+        active: !this.state.virtualCube.active,
+        type: this.state.virtualCube.type
+      }
+    });
+  }
+
+  changeCubeType() {
+    this.setState({
+      virtualCube: {
+        active: this.state.virtualCube.active,
+        type: this.state.virtualCube.type === 'RubiksCube'
+          ? 'PocketCube'
+          : 'RubiksCube'
+      }
+    });
+  }
+
   render() {
 
     return (
       <>
         <Header />
         <Container>
+          <Row className={this.state.virtualCube.active ? 'mb-2' : 'mb-3'}>
+            <Col>
+              <Button onClick={this.toggleVirtualCube} className="std-button" block>{!this.state.virtualCube.active ? 'Virtual Cube' : 'Exit'}</Button>
+            </Col>
+            {
+              this.state.virtualCube.active && (
+                <Col className="pl-0">
+                  <Button onClick={this.changeCubeType} className="std-button" block>Change Type</Button>
+                </Col>
+              )
+            }
+          </Row>
+          {this.state.virtualCube.active && (
+            <Row className="justify-content-center mb-4">
+              <Col md={8} lg={6} xl={5}>
+                <VirtualCube type={this.state.virtualCube.type} />
+              </Col>
+            </Row>
+          )}
           <Row className="justify-content-center">
             <Col md={8} lg={6} xl={5}>
               <Timer addNewTime={this.addNewTime} />
