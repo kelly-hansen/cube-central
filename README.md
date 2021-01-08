@@ -4,7 +4,7 @@ A full stack JavaScript/React solo project for timing and tracking Rubik's Cube 
 
 ## Live Demo
 
-Try the application live at [https://speed-cube-timer.herokuapp.com](https://speed-cube-timer.herokuapp.com)
+Try the application live at [https://cube-central.herokuapp.com](https://cube-central.herokuapp.com)
 
 ## Features
 
