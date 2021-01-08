@@ -119,10 +119,17 @@ export default class TimerPage extends React.Component {
       <>
         <Header />
         <Container>
-          <Row className="mb-3">
+          <Row className={this.state.virtualCube.active ? 'mb-2' : 'mb-3'}>
             <Col>
-              <Button onClick={this.toggleVirtualCube} className="std-button" block>Virtual Cube</Button>
+              <Button onClick={this.toggleVirtualCube} className="std-button" block>{!this.state.virtualCube.active ? 'Virtual Cube' : 'Exit'}</Button>
             </Col>
+            {
+              this.state.virtualCube.active && (
+                <Col className="pl-0">
+                  <Button className="std-button" block>Change Type</Button>
+                </Col>
+              )
+            }
           </Row>
           {this.state.virtualCube.active && (
             <Row className="justify-content-center mb-4">
