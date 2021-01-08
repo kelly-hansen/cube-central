@@ -5,6 +5,6 @@ export default class VirtualCube extends React.Component {
 
   render() {
     virtualCube();
-    return <div className="virtualcube" kind={this.props.type} stickersimage="RubiksCube_512.gif"></div>;
+    return <div className="virtualcube" kind={this.props.type} stickersimage="cubecolors.gif"></div>;
   }
 }
