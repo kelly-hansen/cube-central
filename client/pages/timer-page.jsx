@@ -16,7 +16,11 @@ export default class TimerPage extends React.Component {
       sessionTimes: [],
       sessionRecords: null,
       showResetModal: false,
-      showSaveRecordModal: false
+      showSaveRecordModal: false,
+      virtualCube: {
+        active: false,
+        type: 'RubiksCube'
+      }
     };
     this.getSessionRecords = this.getSessionRecords.bind(this);
     this.addNewTime = this.addNewTime.bind(this);
@@ -105,11 +109,13 @@ export default class TimerPage extends React.Component {
       <>
         <Header />
         <Container>
-          <Row className="justify-content-center mb-4">
-            <Col md={8} lg={6} xl={5}>
-              <VirtualCube />
-            </Col>
-          </Row>
+          {this.state.virtualCube.active && (
+            <Row className="justify-content-center mb-4">
+              <Col md={8} lg={6} xl={5}>
+                <VirtualCube />
+              </Col>
+            </Row>
+          )}
           <Row className="justify-content-center">
             <Col md={8} lg={6} xl={5}>
               <Timer addNewTime={this.addNewTime} />
