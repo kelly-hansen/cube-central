@@ -16,8 +16,8 @@ export default class Home extends React.Component {
                   className="home-img mr-3"
                 />
                 <div>
-                  <h3 className="title-text mb-0">Speed Cube</h3>
-                  <h3 className="title-text mb-0">Timer</h3>
+                  <h3 className="title-text mb-0">Cube</h3>
+                  <h3 className="title-text mb-0">Central</h3>
                 </div>
               </Col>
             </Row>
@@ -50,7 +50,7 @@ export default class Home extends React.Component {
                     alt="Timer"
                     className="timer-btn-icon mr-2"
                   />
-                  <h4 className="mb-0">Timer</h4>
+                  <h4 className="mb-0">Solve</h4>
                 </Button>
               </Col>
             </Row>

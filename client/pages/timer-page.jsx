@@ -131,27 +131,37 @@ export default class TimerPage extends React.Component {
       <>
         <Header />
         <Container>
-          <Row className={this.state.virtualCube.active ? 'mb-2' : 'mb-3'}>
-            <Col>
-              <Button onClick={this.toggleVirtualCube} className="std-button" block>{!this.state.virtualCube.active ? 'Virtual Cube' : 'Exit'}</Button>
-            </Col>
+          <Row className={this.state.virtualCube.active ? 'justify-content-center mb-2' : 'justify-content-center mb-3'}>
             {
-              this.state.virtualCube.active && (
-                <Col className="pl-0">
-                  <Button onClick={this.changeCubeType} className="std-button" block>Change Type</Button>
+              !this.state.virtualCube.active
+                ? (
+                <Col md={8} lg={6} xl={6}>
+                  <Button onClick={this.toggleVirtualCube} className="std-button" block>Virtual Cube</Button>
                 </Col>
-              )
+                  )
+                : (
+                <>
+                  <Col md={8} lg={6} xl={6} className="d-flex">
+                    <div className="w-50 pr-1">
+                      <Button onClick={this.toggleVirtualCube} className="std-button" block>Hide Cube</Button>
+                    </div>
+                    <div className="w-50 pl-1">
+                      <Button onClick={this.changeCubeType} className="std-button" block>Change Type</Button>
+                    </div>
+                  </Col>
+                </>
+                  )
             }
           </Row>
           {this.state.virtualCube.active && (
             <Row className="justify-content-center mb-4">
-              <Col md={8} lg={6} xl={5}>
+              <Col md={8} lg={6} xl={6}>
                 <VirtualCube type={this.state.virtualCube.type} />
               </Col>
             </Row>
           )}
           <Row className="justify-content-center">
-            <Col md={8} lg={6} xl={5}>
+            <Col md={8} lg={6} xl={6}>
               <Timer addNewTime={this.addNewTime} />
             </Col>
           </Row>
