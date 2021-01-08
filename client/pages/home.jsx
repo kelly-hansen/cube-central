@@ -50,7 +50,7 @@ export default class Home extends React.Component {
                     alt="Timer"
                     className="timer-btn-icon mr-2"
                   />
-                  <h4 className="mb-0">Timer</h4>
+                  <h4 className="mb-0">Solve</h4>
                 </Button>
               </Col>
             </Row>
