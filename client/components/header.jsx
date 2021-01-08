@@ -18,7 +18,7 @@ export default class Header extends React.Component {
           className="nav-img"
         />
       </Navbar.Brand>
-      <Navbar.Brand href="#">Speed Cube Timer</Navbar.Brand>
+      <Navbar.Brand href="#">Cube Central</Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Nav>

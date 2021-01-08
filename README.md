@@ -1,4 +1,4 @@
-# cubecentral
+# cube-central
 
 A full stack JavaScript/React solo project for timing and tracking Rubik's Cube solves
 
@@ -18,6 +18,8 @@ Try the application live at [https://speed-cube-timer.herokuapp.com](https://spe
 - Users can view World Cube Association (WCA) world records
 
 ## Preview
+
+![screenshots](./screenshots.png)
 
 ## Attribution
 

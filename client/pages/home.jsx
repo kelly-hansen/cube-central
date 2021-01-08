@@ -16,8 +16,8 @@ export default class Home extends React.Component {
                   className="home-img mr-3"
                 />
                 <div>
-                  <h3 className="title-text mb-0">Speed Cube</h3>
-                  <h3 className="title-text mb-0">Timer</h3>
+                  <h3 className="title-text mb-0">Cube</h3>
+                  <h3 className="title-text mb-0">Central</h3>
                 </div>
               </Col>
             </Row>
