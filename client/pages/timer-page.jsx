@@ -28,6 +28,7 @@ export default class TimerPage extends React.Component {
     this.resetSession = this.resetSession.bind(this);
     this.toggleResetModal = this.toggleResetModal.bind(this);
     this.toggleSaveRecordModal = this.toggleSaveRecordModal.bind(this);
+    this.toggleVirtualCube = this.toggleVirtualCube.bind(this);
   }
 
   getSessionRecords(sessionTimes) {
@@ -103,12 +104,26 @@ export default class TimerPage extends React.Component {
     });
   }
 
+  toggleVirtualCube() {
+    this.setState({
+      virtualCube: {
+        active: !this.state.virtualCube.active,
+        type: this.state.virtualCube.type
+      }
+    });
+  }
+
   render() {
 
     return (
       <>
         <Header />
         <Container>
+          <Row className="mb-3">
+            <Col>
+              <Button onClick={this.toggleVirtualCube} className="std-button" block>Virtual Cube</Button>
+            </Col>
+          </Row>
           {this.state.virtualCube.active && (
             <Row className="justify-content-center mb-4">
               <Col md={8} lg={6} xl={5}>
