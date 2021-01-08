@@ -7,6 +7,7 @@ import SessionStats from '../components/session-stats';
 import SessionTimes from '../components/session-times';
 import SaveRecordModal from '../components/save-record-modal';
 import AppContext from '../lib/app-context';
+import VirtualCube from '../components/virtual-cube';
 
 export default class TimerPage extends React.Component {
   constructor(props) {
@@ -104,6 +105,11 @@ export default class TimerPage extends React.Component {
       <>
         <Header />
         <Container>
+          <Row className="justify-content-center mb-4">
+            <Col md={8} lg={6} xl={5}>
+              <VirtualCube />
+            </Col>
+          </Row>
           <Row className="justify-content-center">
             <Col md={8} lg={6} xl={5}>
               <Timer addNewTime={this.addNewTime} />
