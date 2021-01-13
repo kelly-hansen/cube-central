@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
+import AppContext from '../lib/app-context';
 
 export default class SignUpForm extends React.Component {
   constructor(props) {
@@ -44,7 +45,24 @@ export default class SignUpForm extends React.Component {
         if (data.error) {
           status = data.error;
         } else {
-          status = `Welcome ${data.username}! Your account has been created.`;
+          fetch('/api/auth/log-in', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+          })
+            .then(res => res.json())
+            .then(result => {
+              if (result.user && result.token) {
+                this.context.handleLogIn(result);
+              } else {
+                this.setState({
+                  status: result.error
+                });
+              }
+            })
+            .catch(err => console.error(err));
         }
         this.setState({
           status
@@ -105,3 +123,5 @@ export default class SignUpForm extends React.Component {
     );
   }
 }
+
+SignUpForm.contextType = AppContext;
