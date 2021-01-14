@@ -49,7 +49,12 @@ export default class LogInForm extends React.Component {
           });
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        this.setState({
+          status: 'Unable to process request at this time'
+        });
+        console.error(err);
+      });
   }
 
   render() {

@@ -62,14 +62,24 @@ export default class SignUpForm extends React.Component {
                 });
               }
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+              this.setState({
+                status: 'Unable to process request at this time'
+              });
+              console.error(err);
+            });
         }
         this.setState({
           status
         });
         e.target.reset();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        this.setState({
+          status: 'Unable to process request at this time'
+        });
+        console.error(err);
+      });
   }
 
   render() {

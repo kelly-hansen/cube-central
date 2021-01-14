@@ -27,7 +27,12 @@ export default class WorldRecordsPage extends React.Component {
           });
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.setState({
+          recordsData: 'error'
+        });
+      });
   }
 
   render() {
