@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import AppContext from '../lib/app-context';
 
-export default class LogInForm extends React.Component {
+export default function LogInForm(props) {
+  const { username, setUsername } = useState('');
+  const { password, setPassword } = useState('');
+  const { status, setStatus } = useState('');
+
   constructor(props) {
     super(props);
     this.state = {
