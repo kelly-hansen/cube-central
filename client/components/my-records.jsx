@@ -1,22 +1,15 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Form, Spinner } from 'react-bootstrap';
 import getDisplayTime from '../lib/get-display-time';
 import AppContext from '../lib/app-context';
 
-export default class MyRecords extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      puzzleType: '3x3x3 Cube',
-      records: {
-        bestSingle: null,
-        bestAverage3Of5Arr: null
-      },
-      status: null
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.getRecords = this.getRecords.bind(this);
-  }
+export default function MyRecords() {
+  const [puzzleType, setPuzzleType] = useState('3x3x3 Cube');
+  const [records, setRecords] = useState({
+    bestSingle: null,
+    bestAverage3Of5Arr: null
+  });
+  const [status, setStatus] = useState(null);
 
   handleChange(e) {
     this.setState({
