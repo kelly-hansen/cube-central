@@ -2,18 +2,11 @@ import React from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import AppContext from '../lib/app-context';
 
-export default class SignUpForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      status: ''
-    };
-    this.handleChangeUsername = this.handleChangeUsername.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+export default function SignUpForm() {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [status, setStatus] = useState('');
 
   handleChangeUsername(e) {
     this.setState({
