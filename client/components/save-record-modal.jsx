@@ -3,7 +3,7 @@ import { Modal, Form, Button, Spinner } from 'react-bootstrap';
 import getDisplayTime from '../lib/get-display-time';
 import AppContext from '../lib/app-context';
 
-export default class SaveRecordModal extends React.Component {
+export default function SaveRecordModal(props) {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +16,10 @@ export default class SaveRecordModal extends React.Component {
     this.saveNewRecord = this.saveNewRecord.bind(this);
     this.closeAndResetModal = this.closeAndResetModal.bind(this);
   }
+
+  const [puzzleType, setPuzzleType] = useState('3x3x3 Cube');
+  const [recordType, setRecordType] = useState('Single');
+  const [status, setStatus] = useState(null);
 
   updatePuzzle(e) {
     this.setState({
