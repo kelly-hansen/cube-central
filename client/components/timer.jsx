@@ -1,35 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import getDisplayTime from '../lib/get-display-time';
 
-export default class Timer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      running: false,
-      elapsed: 0
-    };
-    this.startTimer = this.startTimer.bind(this);
-    this.stopTimer = this.stopTimer.bind(this);
-    this.spaceListener = this.spaceListener.bind(this);
-  }
+export default function Timer(props) {
 
-  startTimer() {
-    this.setState({
-      running: true,
-      elapsed: 0
-    });
-    let elapsed = 0;
+  const [running, setRunning] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
+
+  function startTimer() {
+    setRunning(true);
+    setElapsed(0);
     const intervalId = setInterval(() => {
-      elapsed = elapsed + 10;
-      this.setState({
-        intervalId,
-        running: true,
-        elapsed
-      });
+      setElapsed(elapsed + 10);
+      setIntervalId(intervalId);
     }, 10);
   }
 
-  stopTimer() {
+  function stopTimer() {
     clearInterval(this.state.intervalId);
     const elapsed = this.state.elapsed;
     this.props.addNewTime(elapsed);
