@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Home from './pages/home';
 import Profile from './pages/profile';
 import TimerPage from './pages/timer-page';
@@ -8,17 +8,11 @@ import parseRoute from './lib/parse-route';
 import AppContext from './lib/app-context';
 import decodeToken from './lib/decode-token';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-      token: null,
-      route: parseRoute(window.location.hash)
-    };
-    this.handleLogIn = this.handleLogIn.bind(this);
-    this.handleLogOut = this.handleLogOut.bind(this);
-  }
+export default function App() {
+
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const [route, setRoute] = useState(parseRoute(window.location.hash));
 
   handleLogIn(result) {
     const { user, token } = result;
