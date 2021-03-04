@@ -1,16 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/header';
 import { Table, Spinner } from 'react-bootstrap';
 import YellowSection from '../components/yellow-section';
 
-export default class WorldRecordsPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dateUpdated: null,
-      recordsData: null
-    };
-  }
+export default function WorldRecordsPage() {
+
+  const [recordsData, setRecordsData] = useState(null);
+  const [dateUpdated, setDateUpdated] = useState(null);
 
   componentDidMount() {
     fetch('/api/world-records')
