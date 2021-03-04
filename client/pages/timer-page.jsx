@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Header from '../components/header';
 import Timer from '../components/timer';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
@@ -9,7 +9,7 @@ import SaveRecordModal from '../components/save-record-modal';
 import AppContext from '../lib/app-context';
 import VirtualCube from '../components/virtual-cube';
 
-export default class TimerPage extends React.Component {
+export default function TimerPage() {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +31,17 @@ export default class TimerPage extends React.Component {
     this.toggleVirtualCube = this.toggleVirtualCube.bind(this);
     this.changeCubeType = this.changeCubeType.bind(this);
   }
+
+  const [sessionTimes, setSessionTimes] = useState([]);
+  const [sessionRecords, setSessionRecords] = useState(null);
+  const [showResetModal, setShowResetModal] = useState(false);
+  const [showSaveRecordModal, setShowSaveRecordModal] = useState(false);
+  const [virtualCube, setVirtualCube] = useState({
+    active: false,
+    type: 'RubiksCube'
+  });
+
+  const context = useContext(AppContext);
 
   getSessionRecords(sessionTimes) {
     if (sessionTimes.length === 0) {
