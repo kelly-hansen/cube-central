@@ -16,32 +16,31 @@ export default function LogInForm(props) {
     setPassword(e.target.value);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setStatus('pending');
     const credentials = {
       username,
       password
     };
-    fetch('/api/auth/log-in', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-      .then(res => res.json())
-      .then(result => {
-        if (result.user && result.token) {
-          context.handleLogIn(result);
-        } else {
-          setStatus(result.error);
-        }
-      })
-      .catch(err => {
-        setStatus('Unable to process request at this time');
-        console.error(err);
+    try {
+      const response = await fetch('/api/auth/log-in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
       });
+      const result = await response.json();
+      if (result.user && result.token) {
+        context.handleLogIn(result);
+      } else {
+        setStatus(result.error);
+      }
+    } catch (err) {
+      setStatus('Unable to process request at this time');
+      console.error(err);
+    }
   }
 
   return (
