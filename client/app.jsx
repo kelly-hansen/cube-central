@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Home from './pages/home';
 import Profile from './pages/profile';
 import TimerPage from './pages/timer-page';
@@ -8,53 +8,39 @@ import parseRoute from './lib/parse-route';
 import AppContext from './lib/app-context';
 import decodeToken from './lib/decode-token';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-      token: null,
-      route: parseRoute(window.location.hash)
-    };
-    this.handleLogIn = this.handleLogIn.bind(this);
-    this.handleLogOut = this.handleLogOut.bind(this);
-  }
+export default function App() {
 
-  handleLogIn(result) {
-    const { user, token } = result;
-    window.localStorage.setItem('speed-cube-timer-jwt', token);
-    this.setState({
-      user,
-      token
-    });
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const [route, setRoute] = useState(parseRoute(window.location.hash));
+
+  function handleLogIn(result) {
+    window.localStorage.setItem('speed-cube-timer-jwt', result.token);
+    setUser(result.user);
+    setToken(result.token);
     const url = new URL(window.location);
     url.hash = '#';
     window.location.replace(url);
   }
 
-  handleLogOut() {
+  function handleLogOut() {
     window.localStorage.removeItem('speed-cube-timer-jwt');
-    this.setState({
-      user: null
-    });
+    setUser(null);
   }
 
-  componentDidMount() {
+  useEffect(() => {
     window.scrollTo(0, 0);
     window.addEventListener('hashchange', () => {
-      this.setState({
-        route: parseRoute(window.location.hash)
-      });
+      setRoute(parseRoute(window.location.hash));
     });
-    const token = window.localStorage.getItem('speed-cube-timer-jwt');
-    const user = token ? decodeToken(token) : null;
-    this.setState({ user, token });
-  }
+    const storedToken = window.localStorage.getItem('speed-cube-timer-jwt');
+    setUser(storedToken ? decodeToken(storedToken) : null);
+    setToken(storedToken);
+  }, []);
 
-  renderPage() {
-    const { route } = this.state;
+  function renderPage() {
     if (route.path === '') {
-      return this.state.user === null ? <Home /> : <Profile />;
+      return user === null ? <Home /> : <Profile />;
     } else if (route.path === 'timer') {
       return <TimerPage />;
     } else if (route.path === 'log-in' || route.path === 'sign-up') {
@@ -64,18 +50,16 @@ export default class App extends React.Component {
     }
   }
 
-  render() {
-    const contextValue = {
-      user: this.state.user,
-      token: this.state.token,
-      route: this.state.route,
-      handleLogIn: this.handleLogIn,
-      handleLogOut: this.handleLogOut
-    };
-    return (
-      <AppContext.Provider value={contextValue}>
-        {this.renderPage()}
-      </AppContext.Provider>
-    );
-  }
+  const contextValue = {
+    user,
+    token,
+    route,
+    handleLogIn,
+    handleLogOut
+  };
+  return (
+    <AppContext.Provider value={contextValue}>
+      {renderPage()}
+    </AppContext.Provider>
+  );
 }
