@@ -17,7 +17,7 @@ export default function SaveRecordModal(props) {
     setRecordType(e.target.value);
   }
 
-  function saveNewRecord(e) {
+  async function saveNewRecord(e) {
     e.preventDefault();
     setStatus('pending');
     const body = {
@@ -25,22 +25,20 @@ export default function SaveRecordModal(props) {
       recordType
     };
     body.solves = body.recordType === 'Single' ? props.sessionRecords.bestSingle : props.sessionRecords.bestAverage3Of5Arr;
-    fetch('/api/new-record', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': context.token
-      },
-      body: JSON.stringify(body)
-    })
-      .then(res => res.json())
-      .then(result => {
-        setStatus('Record saved!');
-      })
-      .catch(err => {
-        console.error(err);
-        setStatus('Unable to process request at this time.');
+    try {
+      await fetch('/api/new-record', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': context.token
+        },
+        body: JSON.stringify(body)
       });
+      setStatus('Record saved!');
+    } catch (err) {
+      console.error(err);
+      setStatus('Unable to process request at this time.');
+    }
   }
 
   function closeAndResetModal() {

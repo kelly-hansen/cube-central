@@ -17,53 +17,46 @@ export default function SignUpForm() {
     setPassword(e.target.value);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setStatus('pending');
     const body = {
       username,
       password
     };
-    fetch('/api/auth/sign-up', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
-      .then(res => res.json())
-      .then(data => {
-        let newStatus;
-        if (data.error) {
-          newStatus = data.error;
-        } else {
-          fetch('/api/auth/log-in', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-          })
-            .then(res => res.json())
-            .then(result => {
-              if (result.user && result.token) {
-                context.handleLogIn(result);
-              } else {
-                setStatus(result.error);
-              }
-            })
-            .catch(err => {
-              setStatus('Unable to process request at this time');
-              console.error(err);
-            });
-        }
-        setStatus(newStatus);
-        e.target.reset();
-      })
-      .catch(err => {
-        setStatus('Unable to process request at this time');
-        console.error(err);
+    try {
+      const response = await fetch('/api/auth/sign-up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
       });
+      const data = await response.json();
+      let newStatus;
+      if (data.error) {
+        newStatus = data.error;
+      } else {
+        const logInResponse = await fetch('/api/auth/log-in', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        });
+        const result = await logInResponse.json();
+        if (result.user && result.token) {
+          context.handleLogIn(result);
+        } else {
+          setStatus(result.error);
+        }
+      }
+      setStatus(newStatus);
+      e.target.reset();
+    } catch (err) {
+      setStatus('Unable to process request at this time');
+      console.error(err);
+    }
   }
 
   return (

@@ -9,21 +9,23 @@ export default function WorldRecordsPage() {
   const [dateUpdated, setDateUpdated] = useState(null);
 
   useEffect(() => {
-    fetch('/api/world-records')
-      .then(res => res.json())
-      .then(result => {
+    async function fetchWorldRecords() {
+      try {
+        const response = await fetch('/api/world-records');
+        const result = await response.json();
         if (result.recordsData) {
           setRecordsData(result.recordsData);
           setDateUpdated(result.dateUpdated);
         } else {
           setRecordsData('error');
         }
-      })
-      .catch(err => {
+      } catch (err) {
         console.error(err);
         setRecordsData('error');
-      });
-  });
+      }
+    }
+    fetchWorldRecords();
+  }, []);
 
   let contents;
   if (recordsData === null) {

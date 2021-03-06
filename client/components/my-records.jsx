@@ -48,24 +48,23 @@ export default function MyRecords() {
     return averageObj;
   }
 
-  function getRecords(puzzleType) {
+  async function getRecords(puzzleType) {
     setStatus('pending');
-    fetch('/api/records', {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': context.token,
-        'puzzle-type': puzzleType
-      }
-    })
-      .then(res => res.json())
-      .then(result => {
-        setRecords(result);
-        setStatus(null);
-      })
-      .catch(err => {
-        console.error(err);
-        setStatus('error');
+    try {
+      const response = await fetch('/api/records', {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': context.token,
+          'puzzle-type': puzzleType
+        }
       });
+      const result = await response.json();
+      setRecords(result);
+      setStatus(null);
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+    }
   }
 
   useEffect(() => {
