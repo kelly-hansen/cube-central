@@ -23,7 +23,7 @@ export default function WorldRecordsPage() {
         console.error(err);
         setRecordsData('error');
       });
-  });
+  }, []);
 
   let contents;
   if (recordsData === null) {
