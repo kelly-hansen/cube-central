@@ -7,9 +7,10 @@ const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-fetch('https://www.worldcubeassociation.org/results/records')
-  .then(res => res.text())
-  .then(body => {
+async function getWRData() {
+  try {
+    const response = await fetch('https://www.worldcubeassociation.org/results/records');
+    const body = await response.text();
     const $ = cheerio.load(body);
 
     const puzzleTypes = $('h2 > a', '#results-list');
@@ -54,5 +55,9 @@ fetch('https://www.worldcubeassociation.org/results/records')
       `;
     const params = [recordsJson, dateUpdated];
     return db.query(sql, params);
-  })
-  .catch(err => console.error(err));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+getWRData();
