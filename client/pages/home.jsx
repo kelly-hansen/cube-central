@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import YellowSection from '../components/yellow-section';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -40,17 +41,14 @@ export default function Home() {
           </Row>
           <Row className="py-2">
             <Col>
-              <Button
-                href="#timer"
-                variant="success"
-                className="timer-btn d-flex justify-content-center align-items-center">
+              <Link to="/timer" className="timer-btn d-flex justify-content-center align-items-center rounded">
                 <img
                   src="/stopwatch.svg"
                   alt="Timer"
                   className="timer-btn-icon mr-2"
                 />
                 <h4 className="mb-0">Solve</h4>
-              </Button>
+              </Link>
             </Col>
           </Row>
           <Row className="py-2">

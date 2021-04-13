@@ -23,6 +23,7 @@ body {
 .timer-btn {
   background-color: #4bed4b;
   height: 5rem;
+  color: white;
 }
 
 .timer-btn:hover {
