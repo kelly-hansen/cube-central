@@ -29,6 +29,8 @@ body {
 .timer-btn:hover {
   cursor: pointer;
   background-color: #2dd12d;
+  color: white;
+  text-decoration: none;
 }
 
 .timer-btn-icon {

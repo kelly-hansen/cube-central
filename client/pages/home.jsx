@@ -53,16 +53,14 @@ export default function Home() {
           </Row>
           <Row className="py-2">
             <Col>
-              <Button
-                href="#world-records"
-                className="timer-btn d-flex justify-content-center align-items-center">
+              <Link to="/world-records" className="timer-btn btn-primary d-flex justify-content-center align-items-center rounded">
                 <img
                   src="/globe.svg"
                   alt="Glove"
                   className="timer-btn-icon mr-2"
                 />
                 <h4 className="mb-0">World Records</h4>
-              </Button>
+              </Link>
             </Col>
           </Row>
         </Container>
