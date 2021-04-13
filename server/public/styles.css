@@ -45,6 +45,10 @@ body {
   height: 3rem;
 }
 
+.std-button:hover {
+  text-decoration: none;
+}
+
 .timer {
   border-radius: 0.25rem;
   color: white;

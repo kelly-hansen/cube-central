@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import YellowSection from '../components/yellow-section';
 import { Link } from 'react-router-dom';
 
@@ -23,20 +23,14 @@ export default function Home() {
           </Row>
           <Row className="py-2">
             <Col className="pr-2">
-              <Button
-                href="#log-in"
-                className="std-button d-flex justify-content-center align-items-center"
-                variant="warning"
-                block
-              >Log In</Button>
+              <Link to="/log-in" className="std-button btn-warning d-flex justify-content-center align-items-center rounded">
+                Log In
+              </Link>
             </Col>
             <Col className="pl-2">
-              <Button
-                href="#sign-up"
-                className="std-button d-flex justify-content-center align-items-center"
-                variant="danger"
-                block
-              >Sign Up</Button>
+              <Link to="sign-up" className="std-button btn-danger d-flex justify-content-center align-items-center rounded">
+                Sign Up
+              </Link>
             </Col>
           </Row>
           <Row className="py-2">
