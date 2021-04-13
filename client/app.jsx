@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Home from './pages/home';
+import Profile from './pages/profile';
 import TimerPage from './pages/timer-page';
 import WorldRecordsPage from './pages/world-records-page';
 import LogInSignUpPage from './pages/log-in-sign-up-page';
@@ -38,18 +39,6 @@ export default function App() {
     setToken(storedToken);
   }, []);
 
-  // function renderPage() {
-  //   if (route.path === '') {
-  //     return user === null ? <Home /> : <Profile />;
-  //   } else if (route.path === 'timer') {
-  //     return <TimerPage />;
-  //   } else if (route.path === 'log-in' || route.path === 'sign-up') {
-  //     return <LogInSignUpPage />;
-  //   } else if (route.path === 'world-records') {
-  //     return <WorldRecordsPage />;
-  //   }
-  // }
-
   const contextValue = {
     user,
     token,
@@ -62,7 +51,7 @@ export default function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Home />
+            {user === null ? <Home /> : <Profile />}
           </Route>
           <Route path="/timer">
             <TimerPage />
