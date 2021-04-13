@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import AppContext from '../lib/app-context';
+import { Link } from 'react-router-dom';
 
 export default function LogInForm(props) {
   const [username, setUsername] = useState('');
@@ -71,7 +72,7 @@ export default function LogInForm(props) {
               />
             </Form.Group>
             <div className="my-3">
-              <a href="#sign-up">Don&apos;t have an account? Sign up now.</a>
+              <Link to="/sign-up">Don&apos;t have an account? Sign up now.</Link>
             </div>
             <Button variant="primary" type="submit">
               Log In

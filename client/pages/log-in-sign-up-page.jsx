@@ -1,15 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Header from '../components/header';
 import SignUpForm from '../components/sign-up-form';
 import LogInForm from '../components/log-in-form';
-import AppContext from '../lib/app-context';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default function LogInSignUpPage() {
-  const context = useContext(AppContext);
   return (
     <>
       <Header />
-      {context.route.path === 'log-in' ? <LogInForm /> : <SignUpForm />}
+      <Router>
+        <Switch>
+          <Route path="/log-in">
+            <LogInForm />
+          </Route>
+          <Route path="/sign-up">
+            <SignUpForm />
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }

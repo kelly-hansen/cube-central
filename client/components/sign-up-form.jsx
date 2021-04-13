@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import AppContext from '../lib/app-context';
+import { Link } from 'react-router-dom';
 
 export default function SignUpForm() {
 
@@ -90,7 +91,7 @@ export default function SignUpForm() {
               </Form.Text>
             </Form.Group>
             <div className="my-3">
-              <a href="#log-in">Already have an account? Click here to log in.</a>
+              <Link to="/log-in">Already have an account? Click here to log in.</Link>
             </div>
             <Button variant="primary" type="submit">
               Sign Up
