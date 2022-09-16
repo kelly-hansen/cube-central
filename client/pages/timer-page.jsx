@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import Header from '../components/header';
 import Timer from '../components/timer';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
@@ -10,7 +10,13 @@ import AppContext from '../lib/app-context';
 import VirtualCube from '../components/virtual-cube';
 
 export default function TimerPage() {
-  const [sessionTimes, setSessionTimes] = useState([]);
+  const [sessionTimes, _setSessionTimes] = useState([]);
+  const sessionTimesRef = useRef(sessionTimes);
+  const setSessionTimes = times => {
+    sessionTimesRef.current = times;
+    _setSessionTimes([]);
+  };
+
   const [sessionRecords, setSessionRecords] = useState(null);
   const [showResetModal, setShowResetModal] = useState(false);
   const [showSaveRecordModal, setShowSaveRecordModal] = useState(false);
@@ -56,14 +62,14 @@ export default function TimerPage() {
   }
 
   function addNewTime(time) {
-    const sesTimes = sessionTimes.concat(time);
+    const sesTimes = sessionTimesRef.current.concat(time);
     const sesRecords = getSessionRecords(sesTimes);
     setSessionTimes(sesTimes);
     setSessionRecords(sesRecords);
   }
 
   function deleteTime(index) {
-    const sesTimes = sessionTimes.slice();
+    const sesTimes = sessionTimesRef.slice();
     sesTimes.splice(index, 1);
     const sesRecords = getSessionRecords(sesTimes);
     setSessionTimes(sesTimes);
@@ -152,10 +158,10 @@ export default function TimerPage() {
           </Row>
           <Row className="mb-4">
             <Col sm className="d-flex justify-content-center mb-4">
-              <SessionStats sessionTimes={sessionTimes} />
+              <SessionStats sessionTimes={sessionTimesRef.current} />
             </Col>
             <Col sm className="d-flex justify-content-center">
-              <SessionTimes sessionTimes={sessionTimes} deleteTime={deleteTime} />
+              <SessionTimes sessionTimes={sessionTimesRef.current} deleteTime={deleteTime} />
             </Col>
           </Row>
           <Row className="justify-content-center">
