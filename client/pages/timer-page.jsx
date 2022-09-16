@@ -69,7 +69,7 @@ export default function TimerPage() {
   }
 
   function deleteTime(index) {
-    const sesTimes = sessionTimesRef.slice();
+    const sesTimes = sessionTimesRef.current.slice();
     sesTimes.splice(index, 1);
     const sesRecords = getSessionRecords(sesTimes);
     setSessionTimes(sesTimes);
