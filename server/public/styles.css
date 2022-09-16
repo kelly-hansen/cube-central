@@ -76,7 +76,7 @@ body {
   width: 150%;
   left: -25%;
   border-radius: 50% 50% 0 0 / 100px;
-  background-color: #ff0;
+  background-color: #fedd02;
 }
 
 .yellow-contents {
@@ -105,7 +105,7 @@ body {
 }
 
 .form-cont {
-  background-color: #ff0;
+  background-color: #fedd02;
   border-radius: 0.25rem;
 }
 
