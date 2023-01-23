@@ -1,16 +1,16 @@
-require('dotenv/config');
+// require('dotenv/config');
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
-const pg = require('pg');
+// const pg = require('pg');
 
-const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+// const db = new pg.Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
 
-async function getWRData() {
+export default async function getWRData() {
   try {
     const response = await fetch('https://www.worldcubeassociation.org/results/records');
     const body = await response.text();
@@ -47,20 +47,21 @@ async function getWRData() {
       }
     }
 
-    const recordsJson = JSON.stringify(records);
-    const dateUpdated = 'now()';
-    const sql = `
-      with "deleted" as (
-        delete from "worldRecordsData" *
-      )
-      insert into "worldRecordsData" ("recordsData", "dateUpdated")
-      values ($1, $2);
-      `;
-    const params = [recordsJson, dateUpdated];
-    return db.query(sql, params);
+    // const recordsJson = JSON.stringify(records);
+    // const dateUpdated = 'now()';
+    // const sql = `
+    //   with "deleted" as (
+    //     delete from "worldRecordsData" *
+    //   )
+    //   insert into "worldRecordsData" ("recordsData", "dateUpdated")
+    //   values ($1, $2);
+    //   `;
+    // const params = [recordsJson, dateUpdated];
+    // return db.query(sql, params);
+    return records;
   } catch (err) {
     console.error(err);
   }
 }
 
-getWRData();
+// getWRData();

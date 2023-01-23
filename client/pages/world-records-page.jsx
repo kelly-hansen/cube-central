@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/header';
 import { Table, Spinner } from 'react-bootstrap';
 import YellowSection from '../components/yellow-section';
+import getWRData from '../lib/update-world-records';
 
 export default function WorldRecordsPage() {
 
@@ -11,11 +12,10 @@ export default function WorldRecordsPage() {
   useEffect(() => {
     async function fetchWorldRecords() {
       try {
-        const response = await fetch('/api/world-records');
-        const result = await response.json();
-        if (result.recordsData) {
-          setRecordsData(result.recordsData);
-          setDateUpdated(result.dateUpdated);
+        const records = await getWRData();
+        if (records) {
+          setRecordsData(records);
+          setDateUpdated(new Date());
         } else {
           setRecordsData('error');
         }

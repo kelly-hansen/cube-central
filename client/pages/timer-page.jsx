@@ -21,7 +21,7 @@ export default function TimerPage() {
   const [showResetModal, setShowResetModal] = useState(false);
   const [showSaveRecordModal, setShowSaveRecordModal] = useState(false);
   const [virtualCube, setVirtualCube] = useState({
-    active: false,
+    active: true,
     type: 'RubiksCube'
   });
 

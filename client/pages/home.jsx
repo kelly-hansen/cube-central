@@ -20,7 +20,7 @@ export default function Home() {
               </div>
             </Col>
           </Row>
-          <Row className="py-2">
+          {/* <Row className="py-2">
             <Col className="pr-2">
               <Button
                 href="#log-in"
@@ -37,7 +37,7 @@ export default function Home() {
                 block
               >Sign Up</Button>
             </Col>
-          </Row>
+          </Row> */}
           <Row className="py-2">
             <Col>
               <Button
@@ -53,7 +53,7 @@ export default function Home() {
               </Button>
             </Col>
           </Row>
-          <Row className="py-2">
+          {/* <Row className="py-2">
             <Col>
               <Button
                 href="#world-records"
@@ -66,17 +66,17 @@ export default function Home() {
                 <h4 className="mb-0">World Records</h4>
               </Button>
             </Col>
-          </Row>
+          </Row> */}
         </Container>
       </div>
       <YellowSection>
         <div className="d-flex flex-column align-items-center justify-content-center h-100">
           <p className="home-info-text w-50 font-weight-bold">
-            Use the timer to beat your best solve times
+            Use the timer to beat your best solve times!
           </p>
-          <p className="home-info-text w-50 font-weight-bold">
+          {/* <p className="home-info-text w-50 font-weight-bold">
             Sign up for free to save your records
-          </p>
+          </p> */}
         </div>
       </YellowSection>
     </>
